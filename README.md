@@ -7,9 +7,10 @@ website/
 ├── index.html              # the whole page
 ├── assets/
 │   ├── css/styles.css      # design tokens + custom styles
+│   ├── img/logo.svg        # traced wordmark, painted via CSS mask
 │   └── js/
 │       ├── i18n.js         # NL/EN switching
-│       └── main.js         # theme, filtering, reveal, mobile nav
+│       └── main.js         # filtering, reveal, mobile nav
 └── README.md
 ```
 
@@ -62,7 +63,7 @@ Generated with the `ui-ux-pro-max` skill and applied as follows:
   restrained offset shadows
 - **Type** — Playfair Display (display) + Source Serif 4 (body) + JetBrains Mono (labels, uppercase,
   wide tracking). Chosen to match the high-contrast serif of the MD-ontwerpen logo.
-- **Colour** — monochrome with a blue accent; all tokens live at the top of `styles.css` and flip on `.dark`
+- **Colour** — monochrome with a blue accent, **light mode only**; all tokens live at the top of `styles.css`
 
 Three deliberate departures from the generated system:
 
@@ -92,8 +93,8 @@ The header applies it as a **CSS mask** over a `currentColor` background:
 }
 ```
 
-That makes the logo follow the theme automatically — near-black in light mode,
-near-white in dark — from a single file. An `<img>` could not do this: `currentColor`
+The logo therefore takes its colour from the surrounding text rather than having it
+baked in, and stays crisp at any size. An `<img>` could not do this: `currentColor`
 inside an externally referenced SVG does not inherit the host page's colour. Browsers
 without mask support fall back to the text wordmark via `@supports`.
 
@@ -110,15 +111,17 @@ produces the background instead of the letterforms.
 
 ## Accessibility
 
-Verified in-browser, both themes:
+Verified in-browser:
 
-- All text pairs ≥ 4.5:1; focus rings ≥ 3:1 (14/14 pass)
+- All text pairs ≥ 4.5:1; focus rings ≥ 3:1 (8/8 pass)
 - Every control ≥ 44×44 px
 - No horizontal scroll at 375 px
 - Visible focus ring on every control; skip link to main content
 - Filtering announced via `role="status"`, filtered cards `hidden` so they leave the tab order
 - `<html lang>` updates with the language toggle
 - `prefers-reduced-motion` disables reveals, smooth scrolling, and hover movement
+- The menu button is hidden at ≥768px by an explicit media query, because `.control`
+  sets `display` in this stylesheet and would otherwise override Tailwind's `md:hidden`
 - `scroll-padding-top` keeps anchor targets clear of the sticky header (WCAG 2.2 Focus Not Obscured)
 
 ## Deploying

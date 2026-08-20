@@ -93,8 +93,6 @@
 
       "aria.langNL": "Schakel naar Nederlands",
       "aria.langEN": "Schakel naar Engels",
-      "aria.themeToDark": "Schakel naar donkere modus",
-      "aria.themeToLight": "Schakel naar lichte modus",
       "aria.langGroup": "Taalkeuze",
     },
 
@@ -177,8 +175,6 @@
 
       "aria.langNL": "Switch to Dutch",
       "aria.langEN": "Switch to English",
-      "aria.themeToDark": "Switch to dark mode",
-      "aria.themeToLight": "Switch to light mode",
       "aria.langGroup": "Language selection",
     },
   };

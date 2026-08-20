@@ -1,12 +1,12 @@
 /* ==========================================================================
    MD-ontwerpen — Design tokens & custom styles
-   Style: Editorial (Playfair Display / Source Serif 4 / JetBrains Mono)
+   Style: Editorial, light mode only (Playfair Display / Source Serif 4 / JetBrains Mono)
            on a structural grid - sharp corners, hard borders, offset shadows
    Tokens sourced from the ui-ux-pro-max design system.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. Raw tokens — flipped by the .dark class on <html>
+   1. Design tokens (light only — the site has no dark mode)
    -------------------------------------------------------------------------- */
 
 :root {
@@ -20,35 +20,18 @@
   --border-soft: #e4e4e7;
   --accent: #2563eb;
   --on-accent: #ffffff;
-  /* Darker blue for accent-coloured TEXT sitting on the muted panel.
+  /* Darker blue for accent-coloured TEXT on the muted panel.
      #2563eb only reaches 4.35:1 there; this clears 4.5:1 at 5.64:1. */
   --accent-strong: #1d4ed8;
   --primary: #18181b;
   --on-primary: #ffffff;
 
   /* Structural */
-  --header-h: 4.5rem;
+  --header-h: 5.25rem;
   --rule: 2px;
   --rule-heavy: 3px;
 }
 
-.dark {
-  --bg: #09090b;
-  --fg: #fafafa;
-  --card: #18181b;
-  --card-fg: #fafafa;
-  --muted: #27272a;
-  --muted-fg: #a1a1aa;
-  --border: #fafafa;
-  --border-soft: #3f3f46;
-  /* Lighter blue: #2563eb on near-black fails 4.5:1, #60a5fa passes comfortably */
-  --accent: #60a5fa;
-  --on-accent: #09090b;
-  /* Already 5.86:1 on the dark muted panel — no separate value needed */
-  --accent-strong: #60a5fa;
-  --primary: #fafafa;
-  --on-primary: #09090b;
-}
 
 /* --------------------------------------------------------------------------
    2. Base
@@ -205,6 +188,18 @@ h3,
   color: var(--bg);
 }
 
+/*
+  .control sets display:inline-flex, and this stylesheet loads after Tailwind's
+  injected styles. Same specificity means the later rule wins, so `md:hidden` on
+  the menu button was being overridden and the hamburger stayed visible next to
+  the desktop nav. Hide it explicitly at the same breakpoint instead.
+*/
+@media (min-width: 768px) {
+  [data-nav-toggle] {
+    display: none;
+  }
+}
+
 /* Filter pills */
 .filter-btn {
   border: var(--rule) solid var(--border);
@@ -299,12 +294,6 @@ h3,
   text-underline-offset: 4px;
 }
 
-/* Swap the icon that matches the *current* theme out of view */
-.dark .icon-moon,
-html:not(.dark) .icon-sun {
-  display: none;
-}
-
 /* --------------------------------------------------------------------------
    8. Motion — respect the user's system preference (WCAG 2.3.3)
    -------------------------------------------------------------------------- */
@@ -385,14 +374,14 @@ html:not(.dark) .icon-sun {
 
 /*
   The artwork is a single flat colour, so it is applied as a mask over a
-  currentColor fill. That makes it inherit the theme automatically - dark in
-  light mode, light in dark mode - from one file, with no filter hacks and no
-  second asset. aspect-ratio matches the SVG viewBox (2200x1368) so the box is
-  reserved before the mask loads and the header never shifts.
+  currentColor fill. The logo therefore takes its colour from the surrounding
+  text rather than being baked in, and stays crisp at any size from one 14 KB
+  file. aspect-ratio matches the SVG viewBox (2200x1368) so the box is reserved
+  before the mask loads and the header never shifts.
 */
 .site-logo {
   display: block;
-  height: 2.125rem;
+  height: 2.5rem;
   aspect-ratio: 2200 / 1368;
   background-color: currentColor;
   -webkit-mask: url("../img/logo.svg") no-repeat center / contain;
@@ -401,7 +390,7 @@ html:not(.dark) .icon-sun {
 
 @media (min-width: 640px) {
   .site-logo {
-    height: 2.625rem;
+    height: 3.25rem;
   }
 }
 

@@ -1,46 +1,9 @@
 /* ==========================================================================
-   MD-ontwerpen — Theme toggle, project filtering, scroll reveal, mobile nav
+   MD-ontwerpen — Project filtering, scroll reveal, mobile nav
    ========================================================================== */
 
 (function () {
   "use strict";
-
-  var THEME_KEY = "md-ontwerpen:theme";
-
-  /* ------------------------------------------------------------------------
-     Theme
-     The initial class is set by an inline script in <head> so the page never
-     flashes the wrong theme; this only wires up the toggle afterwards.
-     ------------------------------------------------------------------------ */
-
-  function currentTheme() {
-    return document.documentElement.classList.contains("dark") ? "dark" : "light";
-  }
-
-  function syncThemeButton(btn) {
-    var goingToDark = currentTheme() === "light";
-    var key = goingToDark ? "aria.themeToDark" : "aria.themeToLight";
-    var label = window.mdI18n && window.mdI18n.t(window.mdI18n.current(), key);
-    btn.setAttribute("aria-label", label || (goingToDark ? "Switch to dark mode" : "Switch to light mode"));
-    btn.setAttribute("data-i18n-attr", "aria-label:" + key);
-  }
-
-  function initTheme() {
-    var btn = document.querySelector("[data-theme-toggle]");
-    if (!btn) return;
-
-    syncThemeButton(btn);
-
-    btn.addEventListener("click", function () {
-      document.documentElement.classList.toggle("dark");
-      try {
-        localStorage.setItem(THEME_KEY, currentTheme());
-      } catch (e) {
-        /* storage unavailable — the toggle still works for this visit */
-      }
-      syncThemeButton(btn);
-    });
-  }
 
   /* ------------------------------------------------------------------------
      Project filtering
@@ -180,7 +143,6 @@
   }
 
   function init() {
-    initTheme();
     initFilters();
     initReveal();
     initMobileNav();

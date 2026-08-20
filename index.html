@@ -8,8 +8,7 @@
       name="description"
       content="Studio voor grafisch ontwerp, merkidentiteit en digitaal ontwerp. Werk dat helder is, standhoudt en klopt."
     />
-    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fafafa" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -21,23 +20,11 @@
     <meta property="og:locale" content="nl_NL" />
     <meta property="og:locale:alternate" content="en_GB" />
 
-    <!--
-      Set the theme and the js flag before first paint. Without this the page
-      renders light, then snaps to dark once JS runs.
-    -->
+    <!-- Flag JS before first paint so the reveal animations can opt in without
+         hiding content from visitors who have JS disabled. -->
     <script>
-      (function () {
-        var d = document.documentElement;
-        d.classList.remove("no-js");
-        d.classList.add("js");
-        try {
-          var saved = localStorage.getItem("md-ontwerpen:theme");
-          var dark =
-            saved === "dark" ||
-            (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches);
-          if (dark) d.classList.add("dark");
-        } catch (e) {}
-      })();
+      document.documentElement.classList.remove("no-js");
+      document.documentElement.classList.add("js");
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -61,9 +48,10 @@
     >
       <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 sm:px-8" style="height: var(--header-h)">
         <a href="#main" class="site-logo-link" aria-label="MD-ontwerpen">
-          <!-- The logo is painted with currentColor through a CSS mask, so it
-               follows the theme. An <img> could not: currentColor inside an
-               externally-referenced SVG does not inherit the page's colour. -->
+          <!-- Painted with currentColor through a CSS mask, so the logo takes
+               its colour from the surrounding text. An <img> could not:
+               currentColor inside an externally-referenced SVG does not
+               inherit the host page's colour. -->
           <span class="site-logo" aria-hidden="true"></span>
           <span class="site-logo-text font-display whitespace-nowrap text-lg font-semibold tracking-tight sm:text-xl">
             MD<span style="color: var(--accent)">—</span>ontwerpen
@@ -109,23 +97,6 @@
               EN
             </button>
           </div>
-
-          <!-- Theme -->
-          <button
-            type="button"
-            class="control"
-            data-theme-toggle
-            style="border: var(--rule) solid var(--border)"
-            aria-label="Schakel naar donkere modus"
-          >
-            <svg class="icon-moon h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-            </svg>
-            <svg class="icon-sun h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="4" />
-              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
-            </svg>
-          </button>
 
           <!-- Mobile menu -->
           <button
