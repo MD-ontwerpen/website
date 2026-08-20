@@ -35,6 +35,14 @@ Everything below is invented filler. It needs your real details.
 | Project thumbnails | `index.html`, the inline `<svg class="project-thumb">` in each card | Geometric placeholders |
 | Statistics | `index.html`, the `<dl>` in the About section | 12 / 140+ / 68% |
 | About copy | `assets/js/i18n.js`, keys `about.p1`, `about.p2` | Generic studio text |
+| Testimonials | `assets/js/i18n.js`, keys `r1.*` … `r3.*` (both `nl` and `en`) | Bracketed placeholders |
+
+**Testimonials must be real.** Use quotes you actually received, with the client's
+permission to publish their name and company. Invented endorsements attributed to
+named people are a different matter from placeholder project titles. The section is
+a static grid rather than a carousel: with three quotes a slider would add autoplay
+pausing, keyboard prev/next, slide-position announcements and a reduced-motion
+resting state, hide content from search engines, and gain nothing.
 
 Swapping a placeholder SVG for a real image:
 

@@ -63,6 +63,7 @@
           <ul class="flex items-center gap-7">
             <li><a class="nav-link" href="#work" data-i18n="nav.work">Werk</a></li>
             <li><a class="nav-link" href="#about" data-i18n="nav.about">Over</a></li>
+            <li><a class="nav-link" href="#reviews" data-i18n="nav.reviews">Referenties</a></li>
             <li><a class="nav-link" href="#contact" data-i18n="nav.contact">Contact</a></li>
           </ul>
         </nav>
@@ -127,6 +128,7 @@
         <ul class="flex flex-col px-5 py-2">
           <li><a class="control w-full justify-start text-lg font-medium" href="#work" data-i18n="nav.work">Werk</a></li>
           <li><a class="control w-full justify-start text-lg font-medium" href="#about" data-i18n="nav.about">Over</a></li>
+          <li><a class="control w-full justify-start text-lg font-medium" href="#reviews" data-i18n="nav.reviews">Referenties</a></li>
           <li><a class="control w-full justify-start text-lg font-medium" href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
@@ -369,6 +371,80 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- ================= REVIEWS ================= -->
+      <section id="reviews" class="rule-top">
+        <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
+          <div class="reveal max-w-2xl">
+            <p class="eyebrow mb-4" data-i18n="reviews.eyebrow">Referenties</p>
+            <h2 class="headline text-[clamp(2rem,5vw,3.5rem)]" data-i18n="reviews.title">
+              Wat klanten zeggen
+            </h2>
+            <p class="mt-5 text-lg" style="color: var(--muted-fg)" data-i18n="reviews.lead">
+              Een greep uit de reacties van opdrachtgevers.
+            </p>
+          </div>
+
+          <!--
+            A static grid, deliberately not a carousel. With this few quotes a
+            slider adds autoplay pausing, keyboard prev/next, slide-position
+            announcements and a reduced-motion resting state, and hides content
+            from search engines - all cost, no benefit.
+          -->
+          <ul class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+            <li class="brut-box brut-shadow reveal">
+              <figure class="flex h-full flex-col p-7">
+                <svg class="mb-5 h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="var(--accent)" aria-hidden="true">
+                  <path d="M9.5 4C6 4 3 7 3 10.5c0 3 2.2 5.3 5 5.5-.3 2-1.7 3.2-3.5 3.7L5 21c3.9-.8 6.5-4 6.5-8.6V4zm10 0C16 4 13 7 13 10.5c0 3 2.2 5.3 5 5.5-.3 2-1.7 3.2-3.5 3.7L15 21c3.9-.8 6.5-4 6.5-8.6V4z"/>
+                </svg>
+                <blockquote class="flex-1">
+                  <p class="text-lg leading-relaxed" data-i18n="r1.quote">
+                    [ Vervang dit door een echte quote van een klant ]
+                  </p>
+                </blockquote>
+                <figcaption class="mt-6 border-t pt-4" style="border-color: var(--border-soft)">
+                  <span class="block font-semibold" data-i18n="r1.name">[ Naam klant ]</span>
+                  <span class="eyebrow mt-1 block" data-i18n="r1.role">[ Functie, Bedrijf ]</span>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="brut-box brut-shadow reveal">
+              <figure class="flex h-full flex-col p-7">
+                <svg class="mb-5 h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="var(--accent)" aria-hidden="true">
+                  <path d="M9.5 4C6 4 3 7 3 10.5c0 3 2.2 5.3 5 5.5-.3 2-1.7 3.2-3.5 3.7L5 21c3.9-.8 6.5-4 6.5-8.6V4zm10 0C16 4 13 7 13 10.5c0 3 2.2 5.3 5 5.5-.3 2-1.7 3.2-3.5 3.7L15 21c3.9-.8 6.5-4 6.5-8.6V4z"/>
+                </svg>
+                <blockquote class="flex-1">
+                  <p class="text-lg leading-relaxed" data-i18n="r2.quote">
+                    [ Vervang dit door een echte quote van een klant ]
+                  </p>
+                </blockquote>
+                <figcaption class="mt-6 border-t pt-4" style="border-color: var(--border-soft)">
+                  <span class="block font-semibold" data-i18n="r2.name">[ Naam klant ]</span>
+                  <span class="eyebrow mt-1 block" data-i18n="r2.role">[ Functie, Bedrijf ]</span>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="brut-box brut-shadow reveal">
+              <figure class="flex h-full flex-col p-7">
+                <svg class="mb-5 h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="var(--accent)" aria-hidden="true">
+                  <path d="M9.5 4C6 4 3 7 3 10.5c0 3 2.2 5.3 5 5.5-.3 2-1.7 3.2-3.5 3.7L5 21c3.9-.8 6.5-4 6.5-8.6V4zm10 0C16 4 13 7 13 10.5c0 3 2.2 5.3 5 5.5-.3 2-1.7 3.2-3.5 3.7L15 21c3.9-.8 6.5-4 6.5-8.6V4z"/>
+                </svg>
+                <blockquote class="flex-1">
+                  <p class="text-lg leading-relaxed" data-i18n="r3.quote">
+                    [ Vervang dit door een echte quote van een klant ]
+                  </p>
+                </blockquote>
+                <figcaption class="mt-6 border-t pt-4" style="border-color: var(--border-soft)">
+                  <span class="block font-semibold" data-i18n="r3.name">[ Naam klant ]</span>
+                  <span class="eyebrow mt-1 block" data-i18n="r3.role">[ Functie, Bedrijf ]</span>
+                </figcaption>
+              </figure>
+            </li>
+          </ul>
         </div>
       </section>
 

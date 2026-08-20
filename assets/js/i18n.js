@@ -23,6 +23,7 @@
       "nav.work": "Werk",
       "nav.about": "Over",
       "nav.contact": "Contact",
+      "nav.reviews": "Referenties",
       "nav.menu": "Menu openen",
 
       "hero.eyebrow": "Ontwerpstudio — beschikbaar voor opdrachten",
@@ -80,6 +81,20 @@
       "about.stat2": "Projecten opgeleverd",
       "about.stat3": "Terugkerende klanten",
 
+      "reviews.eyebrow": "Referenties",
+      "reviews.title": "Wat klanten zeggen",
+      "reviews.lead": "Een greep uit de reacties van opdrachtgevers.",
+      // PLACEHOLDERS - vervang door echte quotes, met toestemming van de klant.
+      "r1.quote": "[ Vervang dit door een echte quote van een klant ]",
+      "r1.name": "[ Naam klant ]",
+      "r1.role": "[ Functie, Bedrijf ]",
+      "r2.quote": "[ Vervang dit door een echte quote van een klant ]",
+      "r2.name": "[ Naam klant ]",
+      "r2.role": "[ Functie, Bedrijf ]",
+      "r3.quote": "[ Vervang dit door een echte quote van een klant ]",
+      "r3.name": "[ Naam klant ]",
+      "r3.role": "[ Functie, Bedrijf ]",
+
       "contact.eyebrow": "Contact",
       "contact.title": "Een project in gedachten?",
       "contact.lead":
@@ -105,6 +120,7 @@
       "nav.work": "Work",
       "nav.about": "About",
       "nav.contact": "Contact",
+      "nav.reviews": "Reviews",
       "nav.menu": "Open menu",
 
       "hero.eyebrow": "Design studio — available for commissions",
@@ -161,6 +177,20 @@
       "about.stat1": "Years experience",
       "about.stat2": "Projects delivered",
       "about.stat3": "Returning clients",
+
+      "reviews.eyebrow": "References",
+      "reviews.title": "What clients say",
+      "reviews.lead": "A few words from the people I have worked with.",
+      // PLACEHOLDERS - replace with real quotes, used with the client's permission.
+      "r1.quote": "[ Replace this with a real client quote ]",
+      "r1.name": "[ Client name ]",
+      "r1.role": "[ Role, Company ]",
+      "r2.quote": "[ Replace this with a real client quote ]",
+      "r2.name": "[ Client name ]",
+      "r2.role": "[ Role, Company ]",
+      "r3.quote": "[ Replace this with a real client quote ]",
+      "r3.name": "[ Client name ]",
+      "r3.role": "[ Role, Company ]",
 
       "contact.eyebrow": "Contact",
       "contact.title": "Got a project in mind?",

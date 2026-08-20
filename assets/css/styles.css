@@ -230,7 +230,9 @@ h3,
   /* Tablets show this nav and are touch devices, so it needs the full target */
   min-height: 44px;
   font-weight: 500;
-  padding: 0.5rem 0.25rem;
+  /* Side padding keeps short labels like "Over" past 44px wide; Roboto sets
+     narrower than the serif it replaced and dropped under the minimum. */
+  padding: 0.5rem 0.75rem;
 }
 
 .nav-link::after {
