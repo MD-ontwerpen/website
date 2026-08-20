@@ -61,14 +61,15 @@ Generated with the `ui-ux-pro-max` skill and applied as follows:
 - **Pattern** — Portfolio Grid: Hero → Project Grid → About → Contact, neutral background, filter by category
 - **Style** — Minimalist Monochrome Editorial on a structural grid: sharp corners, hard 2px borders,
   restrained offset shadows
-- **Type** — Playfair Display (display) + Source Serif 4 (body) + JetBrains Mono (labels, uppercase,
-  wide tracking). Chosen to match the high-contrast serif of the MD-ontwerpen logo.
+- **Type** — Roboto (display and body) + Roboto Mono (labels, uppercase,
+  wide tracking).
 - **Colour** — monochrome with a blue accent, **light mode only**; all tokens live at the top of `styles.css`
 
 Three deliberate departures from the generated system:
 
-1. The first pass used Brutalism with Space Grotesk/Archivo. That clashed with the logo's refined
-   serif, so the type was rebuilt around the logo and the brutalist shadows were softened.
+1. The first pass used Brutalism with Space Grotesk/Archivo, then an editorial serif pairing
+   (Playfair Display / Source Serif 4) chosen to match the logo. Roboto was requested instead,
+   so the type is now a neutral grotesque and does not track the logo's serif character.
 2. The style specifies *no* transitions. The site keeps 150–300 ms hover/focus transitions, because
    instant state changes are listed as an anti-pattern in the same rule set and hurt perceived quality.
 3. `--accent` (`#2563eb`) only reaches 4.35:1 against the muted panel, so accent-coloured text there

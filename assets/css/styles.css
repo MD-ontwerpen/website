@@ -1,7 +1,7 @@
 /* ==========================================================================
    MD-ontwerpen — Design tokens & custom styles
-   Style: Editorial, light mode only (Playfair Display / Source Serif 4 / JetBrains Mono)
-           on a structural grid - sharp corners, hard borders, offset shadows
+   Style: Light mode only, Roboto on a structural grid
+           - sharp corners, hard borders, offset shadows
    Tokens sourced from the ui-ux-pro-max design system.
    ========================================================================== */
 
@@ -47,7 +47,7 @@ html {
 body {
   background-color: var(--bg);
   color: var(--fg);
-  font-family: "Source Serif 4", ui-serif, Georgia, serif;
+  font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
   font-size: 1.0625rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -58,14 +58,14 @@ h1,
 h2,
 h3,
 .font-display {
-  font-family: "Playfair Display", ui-serif, Georgia, serif;
-  letter-spacing: -0.015em;
+  font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.025em;
 }
 
 /* Editorial display type does the heavy lifting */
 .headline {
   font-weight: 900;
-  line-height: 1.02;
+  line-height: 1.05;
   text-wrap: balance;
 }
 
@@ -140,7 +140,7 @@ h3,
 
 /* Eyebrow label above section headings */
 .eyebrow {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: "Roboto Mono", ui-monospace, monospace;
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.16em;
@@ -205,7 +205,7 @@ h3,
   border: var(--rule) solid var(--border);
   background-color: transparent;
   color: var(--fg);
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: "Roboto Mono", ui-monospace, monospace;
   font-weight: 500;
   font-size: 0.8125rem;
   letter-spacing: 0.06em;
@@ -278,7 +278,7 @@ h3,
    -------------------------------------------------------------------------- */
 
 .lang-btn {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: "Roboto Mono", ui-monospace, monospace;
   font-weight: 700;
   font-size: 0.875rem;
   padding: 0 0.625rem;
