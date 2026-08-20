@@ -10,3 +10,10 @@ desktop.ini
 
 # Local preview helper (Windows)
 *.log
+
+# Print-resolution logo originals (CMYK, ~2.6 MB) - source files, not for the
+# web. assets/img/logo.svg is traced from them and is what the site loads.
+assets/img/logo*.jpg
+assets/img/logo*.jpeg
+assets/img/logo*.psd
+assets/img/logo*.ai

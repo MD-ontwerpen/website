@@ -43,7 +43,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap"
       rel="stylesheet"
     />
 
@@ -60,8 +60,14 @@
       style="background-color: var(--bg); border-bottom: var(--rule) solid var(--border)"
     >
       <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 sm:px-8" style="height: var(--header-h)">
-        <a href="#main" class="font-display whitespace-nowrap text-lg font-bold tracking-tight sm:text-xl">
-          MD<span style="color: var(--accent)">—</span>ontwerpen
+        <a href="#main" class="site-logo-link" aria-label="MD-ontwerpen">
+          <!-- The logo is painted with currentColor through a CSS mask, so it
+               follows the theme. An <img> could not: currentColor inside an
+               externally-referenced SVG does not inherit the page's colour. -->
+          <span class="site-logo" aria-hidden="true"></span>
+          <span class="site-logo-text font-display whitespace-nowrap text-lg font-semibold tracking-tight sm:text-xl">
+            MD<span style="color: var(--accent)">—</span>ontwerpen
+          </span>
         </a>
 
         <!-- Desktop nav -->

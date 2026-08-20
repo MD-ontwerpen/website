@@ -58,16 +58,55 @@ actual project images do.
 Generated with the `ui-ux-pro-max` skill and applied as follows:
 
 - **Pattern** — Portfolio Grid: Hero → Project Grid → About → Contact, neutral background, filter by category
-- **Style** — Brutalism: sharp corners, hard 2px borders, offset shadows, bold display type
-- **Type** — Space Grotesk (display) + Archivo (body)
+- **Style** — Minimalist Monochrome Editorial on a structural grid: sharp corners, hard 2px borders,
+  restrained offset shadows
+- **Type** — Playfair Display (display) + Source Serif 4 (body) + JetBrains Mono (labels, uppercase,
+  wide tracking). Chosen to match the high-contrast serif of the MD-ontwerpen logo.
 - **Colour** — monochrome with a blue accent; all tokens live at the top of `styles.css` and flip on `.dark`
 
-Two deliberate departures from the generated system:
+Three deliberate departures from the generated system:
 
-1. Brutalism specifies *no* transitions. The site keeps 150–300 ms hover/focus transitions, because
+1. The first pass used Brutalism with Space Grotesk/Archivo. That clashed with the logo's refined
+   serif, so the type was rebuilt around the logo and the brutalist shadows were softened.
+2. The style specifies *no* transitions. The site keeps 150–300 ms hover/focus transitions, because
    instant state changes are listed as an anti-pattern in the same rule set and hurt perceived quality.
-2. `--accent` (`#2563eb`) only reaches 4.35:1 against the muted panel, so accent-coloured text there
+3. `--accent` (`#2563eb`) only reaches 4.35:1 against the muted panel, so accent-coloured text there
    uses `--accent-strong` (`#1d4ed8`, 5.64:1) instead.
+
+## The logo
+
+`assets/img/logo.svg` is what the site loads. It was traced from the supplied
+print original, which was a 4500x4500 **CMYK JPEG** (2.6 MB) — a print export, not a
+web asset. CMYK JPEGs render with wrong colours in some browsers, carry no transparency,
+and 97% of that canvas was empty margin.
+
+The traced SVG is 14 KB, crops to the artwork, and uses `fill="currentColor"`.
+
+The header applies it as a **CSS mask** over a `currentColor` background:
+
+```css
+.site-logo {
+  background-color: currentColor;
+  mask: url("../img/logo.svg") no-repeat center / contain;
+  aspect-ratio: 2200 / 1368;   /* matches the SVG viewBox */
+}
+```
+
+That makes the logo follow the theme automatically — near-black in light mode,
+near-white in dark — from a single file. An `<img>` could not do this: `currentColor`
+inside an externally referenced SVG does not inherit the host page's colour. Browsers
+without mask support fall back to the text wordmark via `@supports`.
+
+The print original is **git-ignored** (`assets/img/logo*.jpg`) so it is never published.
+Keep it — it is the source. To re-trace after a logo change:
+
+```bash
+python -m pip install Pillow potracer
+```
+
+then re-run the trace, thresholding the greyscale at 128 and passing the **inverted**
+mask to `potrace.Bitmap` — it traces the `False` region, so passing `crop < 128`
+produces the background instead of the letterforms.
 
 ## Accessibility
 

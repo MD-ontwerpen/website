@@ -1,6 +1,7 @@
 /* ==========================================================================
    MD-ontwerpen — Design tokens & custom styles
-   Style: Refined Brutalism (sharp corners, hard borders, bold type)
+   Style: Editorial (Playfair Display / Source Serif 4 / JetBrains Mono)
+           on a structural grid - sharp corners, hard borders, offset shadows
    Tokens sourced from the ui-ux-pro-max design system.
    ========================================================================== */
 
@@ -63,7 +64,9 @@ html {
 body {
   background-color: var(--bg);
   color: var(--fg);
-  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Source Serif 4", ui-serif, Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -72,14 +75,14 @@ h1,
 h2,
 h3,
 .font-display {
-  font-family: "Space Grotesk", "Archivo", ui-sans-serif, system-ui, sans-serif;
-  letter-spacing: -0.02em;
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  letter-spacing: -0.015em;
 }
 
-/* Brutalism: type does the heavy lifting */
+/* Editorial display type does the heavy lifting */
 .headline {
-  font-weight: 700;
-  line-height: 0.95;
+  font-weight: 900;
+  line-height: 1.02;
   text-wrap: balance;
 }
 
@@ -118,7 +121,7 @@ h3,
    4. Brutalist primitives
    -------------------------------------------------------------------------- */
 
-/* Hard-edged box with an offset shadow — the signature of the style */
+/* Hard-edged box with a restrained offset shadow */
 .brut-box {
   border: var(--rule) solid var(--border);
   background-color: var(--card);
@@ -127,19 +130,19 @@ h3,
 }
 
 .brut-shadow {
-  box-shadow: 6px 6px 0 0 var(--border);
+  box-shadow: 3px 3px 0 0 var(--border);
   transition:
     box-shadow 200ms ease-out,
     transform 200ms ease-out;
 }
 
 .brut-shadow:hover {
-  box-shadow: 10px 10px 0 0 var(--accent);
-  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--accent);
+  transform: translate(-1px, -1px);
 }
 
 .brut-shadow:active {
-  box-shadow: 3px 3px 0 0 var(--accent);
+  box-shadow: 1px 1px 0 0 var(--accent);
   transform: translate(1px, 1px);
 }
 
@@ -154,10 +157,10 @@ h3,
 
 /* Eyebrow label above section headings */
 .eyebrow {
-  font-family: "Space Grotesk", monospace;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted-fg);
 }
@@ -207,8 +210,11 @@ h3,
   border: var(--rule) solid var(--border);
   background-color: transparent;
   color: var(--fg);
-  font-weight: 600;
-  font-size: 0.9375rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   padding: 0.5rem 1.125rem;
 }
 
@@ -224,6 +230,10 @@ h3,
 /* Nav links get an underline that grows — motion with meaning */
 .nav-link {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  /* Tablets show this nav and are touch devices, so it needs the full target */
+  min-height: 44px;
   font-weight: 500;
   padding: 0.5rem 0.25rem;
 }
@@ -232,7 +242,7 @@ h3,
   content: "";
   position: absolute;
   left: 0;
-  bottom: 0.25rem;
+  bottom: 0.5rem;
   height: var(--rule);
   width: 0;
   background-color: var(--accent);
@@ -273,7 +283,7 @@ h3,
    -------------------------------------------------------------------------- */
 
 .lang-btn {
-  font-family: "Space Grotesk", monospace;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
   font-weight: 700;
   font-size: 0.875rem;
   padding: 0 0.625rem;
@@ -360,5 +370,51 @@ html:not(.dark) .icon-sun {
   a[href^="http"]::after {
     content: " (" attr(href) ")";
     font-size: 0.75em;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. Site logo
+   -------------------------------------------------------------------------- */
+
+.site-logo-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/*
+  The artwork is a single flat colour, so it is applied as a mask over a
+  currentColor fill. That makes it inherit the theme automatically - dark in
+  light mode, light in dark mode - from one file, with no filter hacks and no
+  second asset. aspect-ratio matches the SVG viewBox (2200x1368) so the box is
+  reserved before the mask loads and the header never shifts.
+*/
+.site-logo {
+  display: block;
+  height: 2.125rem;
+  aspect-ratio: 2200 / 1368;
+  background-color: currentColor;
+  -webkit-mask: url("../img/logo.svg") no-repeat center / contain;
+  mask: url("../img/logo.svg") no-repeat center / contain;
+}
+
+@media (min-width: 640px) {
+  .site-logo {
+    height: 2.625rem;
+  }
+}
+
+/* Text wordmark is only shown where masks are unsupported */
+.site-logo-text {
+  display: none;
+}
+
+@supports not (mask: url("#m")) {
+  .site-logo {
+    display: none;
+  }
+  .site-logo-text {
+    display: inline;
   }
 }
