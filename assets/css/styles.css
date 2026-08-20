@@ -1,0 +1,364 @@
+/* ==========================================================================
+   MD-ontwerpen — Design tokens & custom styles
+   Style: Refined Brutalism (sharp corners, hard borders, bold type)
+   Tokens sourced from the ui-ux-pro-max design system.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Raw tokens — flipped by the .dark class on <html>
+   -------------------------------------------------------------------------- */
+
+:root {
+  --bg: #fafafa;
+  --fg: #09090b;
+  --card: #ffffff;
+  --card-fg: #09090b;
+  --muted: #e8ecf0;
+  --muted-fg: #475569;
+  --border: #18181b;
+  --border-soft: #e4e4e7;
+  --accent: #2563eb;
+  --on-accent: #ffffff;
+  /* Darker blue for accent-coloured TEXT sitting on the muted panel.
+     #2563eb only reaches 4.35:1 there; this clears 4.5:1 at 5.64:1. */
+  --accent-strong: #1d4ed8;
+  --primary: #18181b;
+  --on-primary: #ffffff;
+
+  /* Structural */
+  --header-h: 4.5rem;
+  --rule: 2px;
+  --rule-heavy: 3px;
+}
+
+.dark {
+  --bg: #09090b;
+  --fg: #fafafa;
+  --card: #18181b;
+  --card-fg: #fafafa;
+  --muted: #27272a;
+  --muted-fg: #a1a1aa;
+  --border: #fafafa;
+  --border-soft: #3f3f46;
+  /* Lighter blue: #2563eb on near-black fails 4.5:1, #60a5fa passes comfortably */
+  --accent: #60a5fa;
+  --on-accent: #09090b;
+  /* Already 5.86:1 on the dark muted panel — no separate value needed */
+  --accent-strong: #60a5fa;
+  --primary: #fafafa;
+  --on-primary: #09090b;
+}
+
+/* --------------------------------------------------------------------------
+   2. Base
+   -------------------------------------------------------------------------- */
+
+html {
+  /* WCAG 2.2 "Focus Not Obscured" — keeps anchor targets and focused elements
+     clear of the sticky header instead of sliding underneath it. */
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: "Space Grotesk", "Archivo", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Brutalism: type does the heavy lifting */
+.headline {
+  font-weight: 700;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+/* --------------------------------------------------------------------------
+   3. Focus — never removed, always visible (WCAG 2.4.7)
+   -------------------------------------------------------------------------- */
+
+:focus-visible {
+  outline: var(--rule-heavy) solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 0;
+}
+
+/* Only suppress the ring for mouse users who already get a hover affordance */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -100%;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+  transition: top 150ms ease-out;
+}
+
+.skip-link:focus {
+  top: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. Brutalist primitives
+   -------------------------------------------------------------------------- */
+
+/* Hard-edged box with an offset shadow — the signature of the style */
+.brut-box {
+  border: var(--rule) solid var(--border);
+  background-color: var(--card);
+  color: var(--card-fg);
+  border-radius: 0;
+}
+
+.brut-shadow {
+  box-shadow: 6px 6px 0 0 var(--border);
+  transition:
+    box-shadow 200ms ease-out,
+    transform 200ms ease-out;
+}
+
+.brut-shadow:hover {
+  box-shadow: 10px 10px 0 0 var(--accent);
+  transform: translate(-2px, -2px);
+}
+
+.brut-shadow:active {
+  box-shadow: 3px 3px 0 0 var(--accent);
+  transform: translate(1px, 1px);
+}
+
+/* Section rule — the "visible grid" the style calls for */
+.rule-top {
+  border-top: var(--rule) solid var(--border);
+}
+
+.rule-bottom {
+  border-bottom: var(--rule) solid var(--border);
+}
+
+/* Eyebrow label above section headings */
+.eyebrow {
+  font-family: "Space Grotesk", monospace;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-fg);
+}
+
+/* --------------------------------------------------------------------------
+   5. Controls
+   -------------------------------------------------------------------------- */
+
+/* Every control clears the 44x44 minimum touch target */
+.control {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 0;
+  transition:
+    background-color 180ms ease-out,
+    color 180ms ease-out,
+    border-color 180ms ease-out;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--on-accent);
+  border: var(--rule) solid var(--border);
+  font-weight: 600;
+  padding: 0.875rem 1.75rem;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--fg);
+  border: var(--rule) solid var(--border);
+  font-weight: 600;
+  padding: 0.875rem 1.75rem;
+}
+
+.btn-secondary:hover {
+  background-color: var(--fg);
+  color: var(--bg);
+}
+
+/* Filter pills */
+.filter-btn {
+  border: var(--rule) solid var(--border);
+  background-color: transparent;
+  color: var(--fg);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 0.5rem 1.125rem;
+}
+
+.filter-btn:hover {
+  background-color: var(--muted);
+}
+
+.filter-btn[aria-pressed="true"] {
+  background-color: var(--fg);
+  color: var(--bg);
+}
+
+/* Nav links get an underline that grows — motion with meaning */
+.nav-link {
+  position: relative;
+  font-weight: 500;
+  padding: 0.5rem 0.25rem;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.25rem;
+  height: var(--rule);
+  width: 0;
+  background-color: var(--accent);
+  transition: width 200ms ease-out;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   6. Project cards
+   -------------------------------------------------------------------------- */
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Reserve the thumbnail's space before it paints — guards against layout
+   shift (CLS) while the SVG and fonts settle. */
+.project-thumb {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  display: block;
+  border-bottom: var(--rule) solid var(--border);
+  background-color: var(--muted);
+}
+
+.project-card[hidden] {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   7. Language + theme toggles
+   -------------------------------------------------------------------------- */
+
+.lang-btn {
+  font-family: "Space Grotesk", monospace;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0 0.625rem;
+  color: var(--muted-fg);
+  background: transparent;
+}
+
+.lang-btn[aria-pressed="true"] {
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: var(--rule);
+  text-underline-offset: 4px;
+}
+
+/* Swap the icon that matches the *current* theme out of view */
+.dark .icon-moon,
+html:not(.dark) .icon-sun {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   8. Motion — respect the user's system preference (WCAG 2.3.3)
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Keep the hover affordance without the movement */
+  .brut-shadow:hover {
+    transform: none;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Scroll reveal — starts hidden only when JS is available to un-hide it,
+   so the content is never trapped invisible for no-JS visitors. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 500ms ease-out,
+    transform 500ms ease-out;
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   9. Print
+   -------------------------------------------------------------------------- */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .brut-shadow {
+    box-shadow: none;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+  }
+}

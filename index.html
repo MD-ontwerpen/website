@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="nl" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MD-ontwerpen — Grafisch ontwerp &amp; visuele identiteit</title>
+    <meta
+      name="description"
+      content="Studio voor grafisch ontwerp, merkidentiteit en digitaal ontwerp. Werk dat helder is, standhoudt en klopt."
+    />
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="MD-ontwerpen — Grafisch ontwerp &amp; visuele identiteit" />
+    <meta
+      property="og:description"
+      content="Studio voor merkidentiteit, drukwerk en digitaal ontwerp."
+    />
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:locale:alternate" content="en_GB" />
+
+    <!--
+      Set the theme and the js flag before first paint. Without this the page
+      renders light, then snaps to dark once JS runs.
+    -->
+    <script>
+      (function () {
+        var d = document.documentElement;
+        d.classList.remove("no-js");
+        d.classList.add("js");
+        try {
+          var saved = localStorage.getItem("md-ontwerpen:theme");
+          var dark =
+            saved === "dark" ||
+            (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (dark) d.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+
+  <body class="antialiased">
+    <a class="skip-link" href="#main" data-i18n="nav.skip">Ga direct naar de inhoud</a>
+
+    <!-- ================= HEADER ================= -->
+    <header
+      class="sticky top-0 z-50 no-print"
+      style="background-color: var(--bg); border-bottom: var(--rule) solid var(--border)"
+    >
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 sm:px-8" style="height: var(--header-h)">
+        <a href="#main" class="font-display whitespace-nowrap text-lg font-bold tracking-tight sm:text-xl">
+          MD<span style="color: var(--accent)">—</span>ontwerpen
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden md:block" aria-label="Hoofdnavigatie">
+          <ul class="flex items-center gap-7">
+            <li><a class="nav-link" href="#work" data-i18n="nav.work">Werk</a></li>
+            <li><a class="nav-link" href="#about" data-i18n="nav.about">Over</a></li>
+            <li><a class="nav-link" href="#contact" data-i18n="nav.contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="flex items-center gap-1">
+          <!-- Language -->
+          <div
+            class="flex items-center"
+            style="border: var(--rule) solid var(--border)"
+            role="group"
+            data-i18n-attr="aria-label:aria.langGroup"
+            aria-label="Taalkeuze"
+          >
+            <button
+              type="button"
+              class="control lang-btn"
+              data-lang-set="nl"
+              aria-pressed="true"
+              data-i18n-attr="aria-label:aria.langNL"
+              aria-label="Schakel naar Nederlands"
+            >
+              NL
+            </button>
+            <button
+              type="button"
+              class="control lang-btn"
+              data-lang-set="en"
+              aria-pressed="false"
+              data-i18n-attr="aria-label:aria.langEN"
+              aria-label="Schakel naar Engels"
+            >
+              EN
+            </button>
+          </div>
+
+          <!-- Theme -->
+          <button
+            type="button"
+            class="control"
+            data-theme-toggle
+            style="border: var(--rule) solid var(--border)"
+            aria-label="Schakel naar donkere modus"
+          >
+            <svg class="icon-moon h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <svg class="icon-sun h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+            </svg>
+          </button>
+
+          <!-- Mobile menu -->
+          <button
+            type="button"
+            class="control md:hidden"
+            data-nav-toggle
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            style="border: var(--rule) solid var(--border)"
+            data-i18n-attr="aria-label:nav.menu"
+            aria-label="Menu openen"
+          >
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile panel -->
+      <nav
+        id="mobile-nav"
+        data-nav-panel
+        hidden
+        class="md:hidden"
+        aria-label="Mobiele navigatie"
+        style="border-top: var(--rule) solid var(--border); background-color: var(--bg)"
+      >
+        <ul class="flex flex-col px-5 py-2">
+          <li><a class="control w-full justify-start text-lg font-medium" href="#work" data-i18n="nav.work">Werk</a></li>
+          <li><a class="control w-full justify-start text-lg font-medium" href="#about" data-i18n="nav.about">Over</a></li>
+          <li><a class="control w-full justify-start text-lg font-medium" href="#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- ================= HERO ================= -->
+      <section class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:py-36">
+        <p class="eyebrow mb-6" data-i18n="hero.eyebrow">
+          Ontwerpstudio — beschikbaar voor opdrachten
+        </p>
+
+        <h1 class="headline max-w-4xl text-[clamp(2.75rem,9vw,6.5rem)]" data-i18n="hero.title">
+          Ontwerp dat blijft staan.
+        </h1>
+
+        <p
+          class="mt-8 max-w-2xl text-lg leading-relaxed sm:text-xl"
+          style="color: var(--muted-fg)"
+          data-i18n="hero.lead"
+        >
+          MD-ontwerpen is een studio voor merkidentiteit, drukwerk en digitaal ontwerp. Geen ruis,
+          geen trucs — alleen werk dat doet wat het moet doen.
+        </p>
+
+        <div class="mt-11 flex flex-wrap gap-4">
+          <a href="#work" class="control btn-primary brut-shadow" data-i18n="hero.cta1">
+            Bekijk het werk
+          </a>
+          <a href="#contact" class="control btn-secondary" data-i18n="hero.cta2">
+            Neem contact op
+          </a>
+        </div>
+      </section>
+
+      <!-- ================= WORK ================= -->
+      <section id="work" class="rule-top">
+        <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
+          <div class="reveal">
+            <p class="eyebrow mb-4" data-i18n="work.eyebrow">Geselecteerd werk</p>
+            <h2 class="headline text-[clamp(2rem,5vw,3.5rem)]" data-i18n="work.title">Projecten</h2>
+            <p class="mt-5 max-w-2xl text-lg" style="color: var(--muted-fg)" data-i18n="work.lead">
+              Een selectie uit recente opdrachten in identiteit, digitaal en drukwerk.
+            </p>
+          </div>
+
+          <!-- Filters -->
+          <div
+            class="mt-10 flex flex-wrap gap-3"
+            role="group"
+            data-i18n-attr="aria-label:work.filterLabel"
+            aria-label="Filter projecten op categorie"
+          >
+            <button type="button" class="control filter-btn" data-filter="all" aria-pressed="true" data-i18n="filter.all">Alles</button>
+            <button type="button" class="control filter-btn" data-filter="branding" aria-pressed="false" data-i18n="filter.branding">Identiteit</button>
+            <button type="button" class="control filter-btn" data-filter="web" aria-pressed="false" data-i18n="filter.web">Digitaal</button>
+            <button type="button" class="control filter-btn" data-filter="print" aria-pressed="false" data-i18n="filter.print">Drukwerk</button>
+          </div>
+
+          <!-- Screen-reader announcement for filter changes -->
+          <p class="sr-only" role="status" aria-live="polite" data-filter-status></p>
+
+          <ul class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- 1 -->
+            <li class="project-card brut-box brut-shadow reveal" data-category="branding">
+              <svg class="project-thumb" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+                <rect width="400" height="300" fill="var(--muted)" />
+                <rect x="90" y="55" width="220" height="190" fill="none" stroke="var(--fg)" stroke-width="6" />
+                <rect x="130" y="95" width="140" height="110" fill="none" stroke="var(--fg)" stroke-width="6" />
+                <rect x="170" y="135" width="60" height="30" fill="var(--accent)" />
+              </svg>
+              <div class="flex flex-1 flex-col p-6">
+                <p class="eyebrow" data-i18n="p1.cat">Identiteit</p>
+                <h3 class="mt-2 font-display text-xl font-bold" data-i18n="p1.title">Noordlicht Brouwerij</h3>
+                <p class="mt-3 flex-1 text-[0.95rem] leading-relaxed" style="color: var(--muted-fg)" data-i18n="p1.desc">
+                  Volledige merkidentiteit en etiketontwerp voor een ambachtelijke brouwerij.
+                </p>
+              </div>
+            </li>
+
+            <!-- 2 -->
+            <li class="project-card brut-box brut-shadow reveal" data-category="web">
+              <svg class="project-thumb" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+                <rect width="400" height="300" fill="var(--muted)" />
+                <g stroke="var(--fg)" stroke-width="6">
+                  <path d="M-20 220 L 180 20" /><path d="M40 220 L 240 20" />
+                  <path d="M100 220 L 300 20" /><path d="M160 220 L 360 20" />
+                  <path d="M220 220 L 420 20" />
+                </g>
+                <rect x="60" y="230" width="280" height="24" fill="var(--accent)" />
+              </svg>
+              <div class="flex flex-1 flex-col p-6">
+                <p class="eyebrow" data-i18n="p2.cat">Digitaal</p>
+                <h3 class="mt-2 font-display text-xl font-bold" data-i18n="p2.title">Kade 14</h3>
+                <p class="mt-3 flex-1 text-[0.95rem] leading-relaxed" style="color: var(--muted-fg)" data-i18n="p2.desc">
+                  Website en boekingssysteem voor een culturele broedplaats.
+                </p>
+              </div>
+            </li>
+
+            <!-- 3 -->
+            <li class="project-card brut-box brut-shadow reveal" data-category="print">
+              <svg class="project-thumb" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+                <rect width="400" height="300" fill="var(--muted)" />
+                <g fill="var(--fg)">
+                  <rect x="70" y="70" width="30" height="30" /><rect x="140" y="70" width="30" height="30" />
+                  <rect x="210" y="70" width="30" height="30" /><rect x="280" y="70" width="30" height="30" />
+                  <rect x="70" y="140" width="30" height="30" /><rect x="210" y="140" width="30" height="30" />
+                  <rect x="280" y="140" width="30" height="30" />
+                  <rect x="70" y="210" width="30" height="30" /><rect x="140" y="210" width="30" height="30" />
+                  <rect x="280" y="210" width="30" height="30" />
+                </g>
+                <rect x="140" y="140" width="30" height="30" fill="var(--accent)" />
+              </svg>
+              <div class="flex flex-1 flex-col p-6">
+                <p class="eyebrow" data-i18n="p3.cat">Drukwerk</p>
+                <h3 class="mt-2 font-display text-xl font-bold" data-i18n="p3.title">Jaarverslag 2025</h3>
+                <p class="mt-3 flex-1 text-[0.95rem] leading-relaxed" style="color: var(--muted-fg)" data-i18n="p3.desc">
+                  Redactioneel ontwerp en infographics voor een non-profit.
+                </p>
+              </div>
+            </li>
+
+            <!-- 4 -->
+            <li class="project-card brut-box brut-shadow reveal" data-category="branding">
+              <svg class="project-thumb" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+                <rect width="400" height="300" fill="var(--muted)" />
+                <path d="M200 60 A 90 90 0 0 1 200 240 Z" fill="var(--fg)" />
+                <path d="M200 60 A 90 90 0 0 0 200 240 Z" fill="none" stroke="var(--fg)" stroke-width="6" />
+                <circle cx="200" cy="150" r="26" fill="var(--accent)" />
+              </svg>
+              <div class="flex flex-1 flex-col p-6">
+                <p class="eyebrow" data-i18n="p4.cat">Identiteit</p>
+                <h3 class="mt-2 font-display text-xl font-bold" data-i18n="p4.title">Studio Vlinder</h3>
+                <p class="mt-3 flex-1 text-[0.95rem] leading-relaxed" style="color: var(--muted-fg)" data-i18n="p4.desc">
+                  Logo, typografisch systeem en huisstijl voor een fotograaf.
+                </p>
+              </div>
+            </li>
+
+            <!-- 5 -->
+            <li class="project-card brut-box brut-shadow reveal" data-category="web">
+              <svg class="project-thumb" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+                <rect width="400" height="300" fill="var(--muted)" />
+                <g fill="var(--fg)">
+                  <rect x="70" y="180" width="46" height="70" /><rect x="136" y="130" width="46" height="120" />
+                  <rect x="268" y="95" width="46" height="155" />
+                </g>
+                <rect x="202" y="60" width="46" height="190" fill="var(--accent)" />
+              </svg>
+              <div class="flex flex-1 flex-col p-6">
+                <p class="eyebrow" data-i18n="p5.cat">Digitaal</p>
+                <h3 class="mt-2 font-display text-xl font-bold" data-i18n="p5.title">Veldkeuken</h3>
+                <p class="mt-3 flex-1 text-[0.95rem] leading-relaxed" style="color: var(--muted-fg)" data-i18n="p5.desc">
+                  Bestelplatform en menukaartsysteem voor een restaurantgroep.
+                </p>
+              </div>
+            </li>
+
+            <!-- 6 -->
+            <li class="project-card brut-box brut-shadow reveal" data-category="print">
+              <svg class="project-thumb" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+                <rect width="400" height="300" fill="var(--muted)" />
+                <g stroke="var(--fg)" stroke-width="6">
+                  <path d="M120 90 v120 M60 150 h120" /><path d="M280 90 v120 M220 150 h120" />
+                </g>
+                <path d="M200 30 v240" stroke="var(--accent)" stroke-width="6" />
+              </svg>
+              <div class="flex flex-1 flex-col p-6">
+                <p class="eyebrow" data-i18n="p6.cat">Drukwerk</p>
+                <h3 class="mt-2 font-display text-xl font-bold" data-i18n="p6.title">Tentoonstelling — Vorm</h3>
+                <p class="mt-3 flex-1 text-[0.95rem] leading-relaxed" style="color: var(--muted-fg)" data-i18n="p6.desc">
+                  Affiches, signage en catalogus voor een museumtentoonstelling.
+                </p>
+              </div>
+            </li>
+          </ul>
+
+          <p class="mt-10 text-lg" style="color: var(--muted-fg)" data-filter-empty hidden data-i18n="work.empty">
+            Geen projecten in deze categorie.
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= ABOUT ================= -->
+      <section id="about" class="rule-top" style="background-color: var(--muted)">
+        <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
+          <div class="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-20">
+            <div class="reveal">
+              <p class="eyebrow mb-4" data-i18n="about.eyebrow">Over de studio</p>
+              <h2 class="headline text-[clamp(2rem,5vw,3.5rem)]" data-i18n="about.title">
+                Klein, scherp, betrokken.
+              </h2>
+              <p class="mt-7 text-lg leading-relaxed" data-i18n="about.p1">
+                MD-ontwerpen werkt direct met opdrachtgevers — zonder tussenlagen. Dat betekent
+                korte lijnen, snelle beslissingen en een ontwerper die het hele traject kent.
+              </p>
+              <p class="mt-5 text-lg leading-relaxed" data-i18n="about.p2">
+                Elk project begint met de vraag waarom iets bestaat. Pas daarna komt de vorm. Die
+                volgorde levert werk op dat over vijf jaar nog steeds klopt.
+              </p>
+
+              <dl class="mt-12 grid grid-cols-3 gap-6">
+                <div>
+                  <dt class="font-display text-4xl font-bold" style="color: var(--accent-strong)">12</dt>
+                  <dd class="eyebrow mt-2" data-i18n="about.stat1">Jaar ervaring</dd>
+                </div>
+                <div>
+                  <dt class="font-display text-4xl font-bold" style="color: var(--accent-strong)">140+</dt>
+                  <dd class="eyebrow mt-2" data-i18n="about.stat2">Projecten opgeleverd</dd>
+                </div>
+                <div>
+                  <dt class="font-display text-4xl font-bold" style="color: var(--accent-strong)">68%</dt>
+                  <dd class="eyebrow mt-2" data-i18n="about.stat3">Terugkerende klanten</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="reveal">
+              <div class="brut-box p-8 sm:p-10">
+                <h3 class="font-display text-2xl font-bold" data-i18n="about.servicesTitle">Diensten</h3>
+                <ul class="mt-7 space-y-5">
+                  <li class="flex gap-4">
+                    <svg class="mt-1 h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                    <span class="text-lg" data-i18n="about.s1">Merkidentiteit &amp; logo-ontwerp</span>
+                  </li>
+                  <li class="flex gap-4">
+                    <svg class="mt-1 h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                    <span class="text-lg" data-i18n="about.s2">Websites &amp; digitale producten</span>
+                  </li>
+                  <li class="flex gap-4">
+                    <svg class="mt-1 h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                    <span class="text-lg" data-i18n="about.s3">Drukwerk &amp; redactioneel ontwerp</span>
+                  </li>
+                  <li class="flex gap-4">
+                    <svg class="mt-1 h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                    <span class="text-lg" data-i18n="about.s4">Signage &amp; tentoonstellingsontwerp</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CONTACT ================= -->
+      <section id="contact" class="rule-top">
+        <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
+          <div class="reveal max-w-3xl">
+            <p class="eyebrow mb-4" data-i18n="contact.eyebrow">Contact</p>
+            <h2 class="headline text-[clamp(2rem,6vw,4rem)]" data-i18n="contact.title">
+              Een project in gedachten?
+            </h2>
+            <p class="mt-7 text-lg leading-relaxed" style="color: var(--muted-fg)" data-i18n="contact.lead">
+              Vertel kort waar het over gaat en wat de planning is. Ik reageer binnen twee
+              werkdagen.
+            </p>
+
+            <div class="mt-11 flex flex-wrap items-center gap-4">
+              <a href="mailto:hallo@md-ontwerpen.nl" class="control btn-primary brut-shadow" data-i18n="contact.cta">
+                Stuur een e-mail
+              </a>
+              <a href="mailto:hallo@md-ontwerpen.nl" class="control font-display text-lg font-semibold underline decoration-2 underline-offset-4">
+                hallo@md-ontwerpen.nl
+              </a>
+            </div>
+
+            <p class="mt-10 text-[0.95rem]" style="color: var(--muted-fg)" data-i18n="contact.location">
+              Gevestigd in Nederland — werkzaam in heel Europa.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="rule-top no-print">
+      <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-5 px-5 py-10 sm:flex-row sm:items-center sm:px-8">
+        <p class="text-sm" style="color: var(--muted-fg)">
+          © <span data-year>2026</span> MD-ontwerpen. <span data-i18n="footer.rights">Alle rechten voorbehouden.</span>
+        </p>
+        <a href="#main" class="control text-sm font-semibold underline decoration-2 underline-offset-4" data-i18n="footer.top">
+          Terug naar boven
+        </a>
+      </div>
+    </footer>
+
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
