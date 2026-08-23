@@ -1,0 +1,5 @@
+# MD-ontwerpen — https://md-ontwerpen.nl
+User-agent: *
+Allow: /
+
+Sitemap: https://md-ontwerpen.nl/sitemap.xml

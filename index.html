@@ -9,6 +9,8 @@
       content="Studio voor grafisch ontwerp, merkidentiteit en digitaal ontwerp. Werk dat helder is, standhoudt en klopt."
     />
     <meta name="theme-color" content="#fafafa" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://md-ontwerpen.nl/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -17,8 +19,38 @@
       property="og:description"
       content="Studio voor merkidentiteit, drukwerk en digitaal ontwerp."
     />
+    <meta property="og:url" content="https://md-ontwerpen.nl/" />
     <meta property="og:locale" content="nl_NL" />
     <meta property="og:locale:alternate" content="en_GB" />
+    <meta property="og:site_name" content="MD-ontwerpen" />
+    <meta property="og:image" content="https://md-ontwerpen.nl/assets/img/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="MD-ontwerpen" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MD-ontwerpen — Grafisch ontwerp &amp; visuele identiteit" />
+    <meta name="twitter:description" content="Studio voor merkidentiteit, drukwerk en digitaal ontwerp." />
+    <meta name="twitter:image" content="https://md-ontwerpen.nl/assets/img/og-image.png" />
+
+    <!--
+      Structured data, limited to facts verifiable from the site itself: name,
+      URL, logo, description, languages. Deliberately no address, phone, rating
+      or review count - inventing those is dishonest and violates Google's
+      structured-data policy.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "MD-ontwerpen",
+        "url": "https://md-ontwerpen.nl/",
+        "logo": "https://md-ontwerpen.nl/assets/img/logo.svg",
+        "image": "https://md-ontwerpen.nl/assets/img/og-image.png",
+        "description": "Studio voor grafisch ontwerp, merkidentiteit en digitaal ontwerp.",
+        "knowsLanguage": ["nl", "en"]
+      }
+    </script>
 
     <!-- Flag JS before first paint so the reveal animations can opt in without
          hiding content from visitors who have JS disabled. -->
