@@ -78,6 +78,26 @@ The viewer (`assets/js/viewer.js`) is vanilla Three.js loaded from a CDN via the
 specifier, which a browser cannot resolve without it. The map points at the minified
 build (692 KB, not 1.3 MB).
 
+Rendering: image-based lighting from `RoomEnvironment` (generated in code, no HDR
+file to ship), ACES filmic tone mapping, and soft shadow maps onto a
+`ShadowMaterial` plane rather than a lit slab. Materials vary roughness per element
+- uniform roughness is what makes an untextured model read as a pile of boxes.
+
+Two geometry traps worth knowing:
+
+- The facade is **piers with recessed glazing**, not flat panels. The reveal depth is
+  what catches shadow and stops the model reading as a crate.
+- `extrude_triangulation` builds along +Z, so the roof prism comes out lying down.
+  It needs -90 about X then +90 about Z; verify by span (X 12.6, Y 8.6, Z 3.0) rather
+  than by eye.
+
+Selecting a layer renders it with `depthTest: false` and a high `renderOrder`, so it
+reads as an x-ray. Without that, an interior layer like the riser or the escape core
+sits behind six stacked ghost layers and washes out to nothing.
+
+`window.mdViewer` exposes the scene state for inspection - useful when the render and
+the DOM state disagree.
+
 Guards, per the `3d-web-experience` skill's anti-patterns:
 
 - Nothing is downloaded until the visitor presses the button, so the page keeps its

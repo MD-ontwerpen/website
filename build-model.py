@@ -35,16 +35,18 @@ RIDGE = 3.0
 parts = []          # (name, mesh)
 
 
-def add(slug, part, mesh, colour):
+def add(slug, part, mesh, colour, rough=0.82, metal=0.0):
     # A PBR material rather than face colours: face colours would be baked to
     # per-vertex data on export (which needs scipy and bloats the file), and a
     # single material per mesh is what the viewer swaps when highlighting.
+    # Roughness is varied per element - uniform roughness is what makes an
+    # untextured model read as a pile of boxes.
     mesh.visual = trimesh.visual.TextureVisuals(
         material=trimesh.visual.material.PBRMaterial(
             name=f'{slug}_{part}',
             baseColorFactor=[c / 255.0 for c in colour],
-            metallicFactor=0.0,
-            roughnessFactor=0.85,
+            metallicFactor=metal,
+            roughnessFactor=rough,
         )
     )
     parts.append((f'layer_{slug}__{part}', mesh))
@@ -57,7 +59,8 @@ def box(size, at, ):
 
 
 # ---------------------------------------------------------------- landschap
-add('landschap', 'maaiveld', box([34, 26, 0.4], [0, 0, -0.2]), GROUND)
+add('landschap', 'terras', box([22, 16, 0.22], [0, 0, -0.11]), GROUND, rough=0.95)
+add('landschap', 'gazon', box([32, 24, 0.10], [0, 0, -0.21]), [237, 241, 236, 255], rough=1.0)
 for i, (x, y) in enumerate(((-11, 6), (11.5, -5), (10, 7), (-12, -6))):
     t = trimesh.creation.cylinder(radius=0.15, height=2.0)
     t.apply_translation([x, y, 1.0])
@@ -74,31 +77,67 @@ for i, x in enumerate((-W / 2 + 0.6, 0.0, W / 2 - 0.6)):
         col = box([0.45, 0.45, WALL_H], [x, y, WALL_H / 2])
         add('constructieleer', f'kolom{i}{j}', col, SOFT)
 for f in range(1, FLOORS + 1):
-    add('constructieleer', f'vloer{f}', box([W - 0.2, D - 0.2, 0.26], [0, 0, f * FLOOR_H]), SOFT)
+    add('constructieleer', f'vloer{f}', box([W - 0.2, D - 0.2, 0.26], [0, 0, f * FLOOR_H]), SOFT, rough=0.94)
 
 # ------------------------------------------------------------------ bouwkunde
-# Facade panels, slightly proud of the structure
+# Facade: piers with recessed glazing between them. A flat panel is what makes
+# a massing model read as a crate; the reveal depth is what catches shadow.
+GLASS = [58, 72, 92, 255]
+PIER_W, REVEAL = 0.7, 0.16
+PIERS_X = [-W / 2 + PIER_W / 2, -W / 6, W / 6, W / 2 - PIER_W / 2]
+PIERS_Y = [-D / 2 + PIER_W / 2, 0.0, D / 2 - PIER_W / 2]
+
 for f in range(FLOORS):
     z = f * FLOOR_H + FLOOR_H / 2
-    add('bouwkunde', f'gevel_n{f}', box([W, 0.3, FLOOR_H - 0.3], [0, D / 2, z]), PAPER)
-    add('bouwkunde', f'gevel_z{f}', box([W, 0.3, FLOOR_H - 0.3], [0, -D / 2, z]), PAPER)
-    add('bouwkunde', f'gevel_o{f}', box([0.3, D, FLOOR_H - 0.3], [W / 2, 0, z]), PAPER)
-    add('bouwkunde', f'gevel_w{f}', box([0.3, D, FLOOR_H - 0.3], [-W / 2, 0, z]), PAPER)
+    h = FLOOR_H - 0.3
+
+    # long facades (north / south)
+    for y, tag in ((D / 2, 'n'), (-D / 2, 'z')):
+        add('bouwkunde', f'glas_{tag}{f}',
+            box([W - 0.1, 0.16, h - 0.12], [0, y - np.sign(y) * REVEAL, z]),
+            GLASS, rough=0.12, metal=0.35)
+        for i, x in enumerate(PIERS_X):
+            add('bouwkunde', f'penant_{tag}{f}_{i}',
+                box([PIER_W, 0.34, h], [x, y, z]), PAPER, rough=0.78)
+        add('bouwkunde', f'borst_{tag}{f}',
+            box([W, 0.34, 0.55], [0, y, z - h / 2 + 0.27]), PAPER, rough=0.78)
+
+    # short facades (east / west)
+    for x, tag in ((W / 2, 'o'), (-W / 2, 'w')):
+        add('bouwkunde', f'glas_{tag}{f}',
+            box([0.16, D - 0.1, h - 0.12], [x - np.sign(x) * REVEAL, 0, z]),
+            GLASS, rough=0.12, metal=0.35)
+        for i, y in enumerate(PIERS_Y):
+            add('bouwkunde', f'penant_{tag}{f}_{i}',
+                box([0.34, PIER_W, h], [x, y, z]), PAPER, rough=0.78)
+        add('bouwkunde', f'borst_{tag}{f}',
+            box([0.34, D, 0.55], [x, 0, z - h / 2 + 0.27]), PAPER, rough=0.78)
 for f in range(1, FLOORS):
-    add('bouwkunde', f'band{f}', box([W + 0.5, D + 0.5, 0.22], [0, 0, f * FLOOR_H]), INK)
+    add('bouwkunde', f'band{f}', box([W + 0.62, D + 0.62, 0.24], [0, 0, f * FLOOR_H]), INK, rough=0.55)
 
 # ---------------------------------------------------------------- architectuur
 # The massing read: envelope volume plus roof
-env = box([W + 0.28, D + 0.28, WALL_H], [0, 0, WALL_H / 2])
-add('architectuur', 'volume', env, WARM)
+env = box([W + 0.34, D + 0.34, WALL_H], [0, 0, WALL_H / 2])
+add('architectuur', 'volume', env, WARM, rough=0.88)
 profile = np.array([[-D / 2 - 0.3, 0.0], [D / 2 + 0.3, 0.0], [0.0, RIDGE]])
 roof = trimesh.creation.extrude_triangulation(
     vertices=profile, faces=np.array([[0, 1, 2]]), height=W + 0.6)
-roof.apply_transform(trimesh.transformations.rotation_matrix(np.pi / 2, [0, 1, 0]))
+# extrude_triangulation builds along +Z, so the prism comes out lying down.
+# -90 about X stands the profile up, +90 about Z turns the ridge along the
+# width. Verified by span: X=12.6 (breedte), Y=8.6 (diepte), Z=3.0 (nok).
+roof.apply_transform(trimesh.transformations.rotation_matrix(-np.pi / 2, [1, 0, 0]))
 roof.apply_transform(trimesh.transformations.rotation_matrix(np.pi / 2, [0, 0, 1]))
-roof.apply_translation([-(W + 0.6) / 2, 0, WALL_H])
-add('architectuur', 'dak', roof, INK)
-add('architectuur', 'entree', box([2.6, 0.6, 2.7], [0, D / 2 + 0.3, 1.35]), ACCENT)
+# Seat it on the walls and centre it, from the actual bounds rather than
+# hand-computed offsets that drift whenever the profile changes.
+_b = roof.bounds
+roof.apply_translation([
+    -(_b[0][0] + _b[1][0]) / 2,
+    -(_b[0][1] + _b[1][1]) / 2,
+    WALL_H - _b[0][2],
+])
+add('architectuur', 'dak', roof, INK, rough=0.6)
+add('architectuur', 'entree', box([2.6, 0.6, 2.7], [0, D / 2 + 0.3, 1.35]), ACCENT, rough=0.35, metal=0.15)
+add('architectuur', 'luifel', box([4.4, 1.8, 0.22], [0, D / 2 + 0.9, 2.95]), INK, rough=0.5)
 
 # ------------------------------------------------------------------ bouwfysica
 # The thermal skin: a shell offset outside the envelope

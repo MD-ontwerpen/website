@@ -78,6 +78,13 @@ const DIM = 0.16;
   outside it - shown together they occlude the building and read as clutter, so
   the default view is the building itself and these appear on selection.
 */
+/*
+  Individual parts that enclose the building even though their layer belongs in
+  the default view: the architectural massing volume wraps the facade, so shown
+  by default it hides the glazing behind a blank box.
+*/
+const OVERLAY_PARTS = new Set(["volume", "schil"]);
+
 const OVERLAY_ONLY = new Set([
   "bouwfysica",
   "informatiemodel",
@@ -90,9 +97,14 @@ const OVERLAY_ONLY = new Set([
 function collectLayers(root, THREE) {
   root.traverse((obj) => {
     if (!obj.isMesh || !obj.name.startsWith("layer_")) return;
-    const slug = obj.name.slice("layer_".length).split("__")[0];
+    const rest = obj.name.slice("layer_".length);
+    const slug = rest.split("__")[0];
+    const part = rest.split("__")[1] || "";
     if (!state.layers.has(slug)) state.layers.set(slug, { meshes: [] });
+    obj.userData.overlayOnly = OVERLAY_ONLY.has(slug) || OVERLAY_PARTS.has(part);
     // Clone so dimming one layer cannot leak into a mesh that shares a material
+    obj.castShadow = true;
+    obj.receiveShadow = true;
     obj.material = obj.material.clone();
     obj.userData.baseColor = obj.material.color.clone();
     obj.userData.baseOpacity = obj.material.opacity;
@@ -105,15 +117,14 @@ function applyHighlight(slug) {
 
   state.layers.forEach((layer, key) => {
     const selected = key === slug;
-    const overlay = OVERLAY_ONLY.has(key);
-
-    // Nothing chosen: the building, without the abstract layers.
-    // Something chosen: that layer solid, the building ghosted behind it,
-    // every other overlay out of the way.
-    const visible = slug === null ? !overlay : selected || !overlay;
-    const ghost = visible && !selected && slug !== null;
 
     layer.meshes.forEach((m) => {
+      // Enclosing geometry is judged per mesh, not per layer: a layer can be in
+      // the default view while one of its parts would wrap the whole building.
+      const overlay = m.userData.overlayOnly;
+      const visible = slug === null ? !overlay : selected || !overlay;
+      const ghost = visible && !selected && slug !== null;
+
       m.visible = visible;
       m.material.color.copy(m.userData.baseColor);
 
@@ -123,10 +134,20 @@ function applyHighlight(slug) {
         m.material.transparent = true;
         m.material.opacity = DIM;
         m.material.depthWrite = false;
+        m.material.depthTest = true;
+        m.renderOrder = 0;
       } else {
         m.material.transparent = m.userData.baseOpacity < 1;
         m.material.opacity = m.userData.baseOpacity;
         m.material.depthWrite = true;
+
+        // A selected layer draws through the ghost as an x-ray. Riser, escape
+        // core and ducts sit inside the building; behind six stacked ghost
+        // layers even a strong colour washes out to nothing, so depth testing
+        // is dropped for the chosen layer only.
+        const xray = slug !== null && selected;
+        m.material.depthTest = !xray;
+        m.renderOrder = xray ? 10 : 0;
       }
     });
   });
@@ -145,6 +166,10 @@ async function boot(mount, statusEl, buttons) {
   GHOST_TINT = new THREE.Color(0x9aa4b2);
   const { OrbitControls } = await import("three/addons/controls/OrbitControls.js");
   const { GLTFLoader } = await import("three/addons/loaders/GLTFLoader.js");
+  // RoomEnvironment is generated in code - image-based lighting without
+  // shipping an HDR file, which is most of the difference between "flat boxes"
+  // and something that reads as a render.
+  const { RoomEnvironment } = await import("three/addons/environments/RoomEnvironment.js");
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0xfafafa);
@@ -156,15 +181,45 @@ async function boot(mount, statusEl, buttons) {
   // Cap DPR: retina phones otherwise render 3x the pixels for no visible gain
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
+  // Filmic tone mapping rather than raw linear output: highlights roll off
+  // instead of clipping to flat white on the facade.
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   mount.appendChild(renderer.domElement);
 
-  scene.add(new THREE.HemisphereLight(0xffffff, 0xd8dee6, 2.1));
-  const key = new THREE.DirectionalLight(0xffffff, 1.7);
-  key.position.set(18, 26, 14);
+  // Image-based lighting: soft directional gradients and believable shading in
+  // the corners, which flat hemisphere light cannot give.
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+  scene.environmentIntensity = 0.85;
+
+  const key = new THREE.DirectionalLight(0xfff6e8, 2.4);
+  key.position.set(24, 34, 18);
+  key.castShadow = true;
+  key.shadow.mapSize.set(1024, 1024);
+  key.shadow.bias = -0.0012;
+  key.shadow.normalBias = 0.03;
+  const cam = key.shadow.camera;
+  cam.left = -30; cam.right = 30; cam.top = 30; cam.bottom = -30;
+  cam.near = 1; cam.far = 110;
   scene.add(key);
-  const fill = new THREE.DirectionalLight(0xffffff, 0.5);
-  fill.position.set(-16, 10, -12);
+
+  const fill = new THREE.DirectionalLight(0xdce6f5, 0.55);
+  fill.position.set(-20, 14, -16);
   scene.add(fill);
+
+  // A shadow-catching plane rather than a lit slab, so the building sits on the
+  // page background instead of on a visible grey box.
+  const shadowFloor = new THREE.Mesh(
+    new THREE.PlaneGeometry(220, 220),
+    new THREE.ShadowMaterial({ opacity: 0.17 })
+  );
+  shadowFloor.rotation.x = -Math.PI / 2;
+  shadowFloor.position.y = -0.78;
+  shadowFloor.receiveShadow = true;
+  scene.add(shadowFloor);
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
@@ -231,6 +286,11 @@ async function boot(mount, statusEl, buttons) {
       reject
     );
   });
+
+  // Debug handle: lets the scene be inspected from the console without
+  // reaching into module scope. Harmless in production, invaluable when the
+  // render and the DOM state disagree.
+  window.mdViewer = state;
 
   statusEl.hidden = true;
   state.loaded = true;
