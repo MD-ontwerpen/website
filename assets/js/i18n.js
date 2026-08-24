@@ -209,7 +209,16 @@
     },
   };
 
-  /** Resolve the starting language: saved choice → browser hint → default. */
+  /**
+   * Resolve the starting language: an explicit saved choice, otherwise Dutch.
+   *
+   * This deliberately does NOT sniff navigator.language. Googlebot crawls with
+   * an en-US locale, so browser sniffing made it render and index the English
+   * copy - the search result showed the English title and offered Dutch users
+   * "translate this page", on a Dutch studio's site. Dutch is the canonical
+   * content (it matches <html lang>, the title and the description); English
+   * is available to anyone who presses EN, and that choice then persists.
+   */
   function initialLang() {
     var saved;
     try {
@@ -218,10 +227,6 @@
       saved = null; // private mode / storage disabled
     }
     if (saved && translations[saved]) return saved;
-
-    var nav = (navigator.language || "").toLowerCase();
-    if (nav.indexOf("nl") === 0) return "nl";
-    if (nav.indexOf("en") === 0) return "en";
     return DEFAULT_LANG;
   }
 
