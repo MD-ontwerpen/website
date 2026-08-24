@@ -24,43 +24,50 @@ python -m http.server 5510 --directory website
 
 Then visit <http://localhost:5510>.
 
-## Before it goes live — replace the placeholder content
+## What this site is
 
-Everything below is invented filler. It needs your real details.
+MD-ontwerpen is a practice for **architecture, building engineering and construction
+management**. The site has a homepage plus one page per service in `diensten/`.
+
+> Earlier versions of this site described a graphic-design studio. That was wrong -
+> the copy, the projects and the metadata have all been rewritten.
+
+## Regenerating the generated parts
+
+Three scripts build the repetitive parts. Run them from `website/`:
+
+```bash
+python build-service-images.py
+```
+```bash
+python build-service-pages.py
+```
+
+- `build-service-images.py` - one shared building-section drawing plus a highlight
+  variant per service, into `assets/img/diensten/`. The base geometry is identical in
+  every file; only the highlight layer differs, so the set reads as one system.
+- `build-service-pages.py` - the 13 pages in `diensten/`. All article copy lives in
+  this file's `SERVICES` list; edit it there and re-run rather than editing the HTML.
+- `build_service_data.py` - the short card text shared by the homepage grid and sitemap.
+
+`build-home.py` and `build-copy.py` were one-time migration scripts for the rewrite.
+They are kept for reference but are not idempotent - do not re-run them.
+
+## Still placeholder
 
 | What | Where | Currently |
 |------|-------|-----------|
-| Email address | `index.html`, two `mailto:` links in the Contact section | `hallo@md-ontwerpen.nl` |
-| The six projects | `assets/js/i18n.js`, keys `p1.*` … `p6.*` (both `nl` and `en`) | Invented studio work |
-| Project thumbnails | `index.html`, the inline `<svg class="project-thumb">` in each card | Geometric placeholders |
+| Email address | `index.html`, two `mailto:` links in Contact | `hallo@md-ontwerpen.nl` |
 | Statistics | `index.html`, the `<dl>` in the About section | 12 / 140+ / 68% |
-| About copy | `assets/js/i18n.js`, keys `about.p1`, `about.p2` | Generic studio text |
-| Testimonials | `assets/js/i18n.js`, keys `r1.*` … `r3.*` (both `nl` and `en`) | Bracketed placeholders |
+| Testimonials | `assets/js/i18n.js`, keys `r1.*` … `r3.*` | Bracketed placeholders |
 
-**Testimonials must be real.** Use quotes you actually received, with the client's
-permission to publish their name and company. Invented endorsements attributed to
-named people are a different matter from placeholder project titles. The section is
-a static grid rather than a carousel: with three quotes a slider would add autoplay
-pausing, keyboard prev/next, slide-position announcements and a reduced-motion
-resting state, hide content from search engines, and gain nothing.
+**The three statistics are invented and are visible on a live, indexed site.** They
+read as claims the practice is making about itself. Replace them with real figures or
+remove the block.
 
-Swapping a placeholder SVG for a real image:
-
-```html
-<img class="project-thumb" src="assets/img/project-1.webp"
-     alt="Label design for Noordlicht Brewery" width="400" height="300" loading="lazy" />
-```
-
-Keep `width`/`height` so the space is reserved before the image loads, and write a real `alt`
-describing the work — the SVG placeholders are `aria-hidden` because they carry no meaning, but
-actual project images do.
-
-## Adding a project
-
-1. Copy a `<li class="project-card …">` block in `index.html`.
-2. Set `data-category` to `branding`, `web`, or `print` — filtering keys off this.
-3. Point its `data-i18n` attributes at new keys (`p7.title`, `p7.cat`, `p7.desc`).
-4. Add those keys to **both** `nl` and `en` in `assets/js/i18n.js`.
+The service articles describe what each discipline involves. They make no claim about
+experience, project count or clients - that is deliberate, and anything of that kind
+must be true before it goes in.
 
 ## Design system
 

@@ -409,3 +409,36 @@ h3,
     display: inline;
   }
 }
+
+/* --------------------------------------------------------------------------
+   11. Service cards
+   -------------------------------------------------------------------------- */
+
+.dienst-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.dienst-card a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/*
+  Reserve the thumbnail box from the SVG's own 800x520 ratio so the grid does
+  not reflow while thirteen images decode.
+*/
+.dienst-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 800 / 520;
+  object-fit: cover;
+  border-bottom: var(--rule) solid var(--border);
+  background-color: var(--muted);
+}
+
+.dienst-card:hover .eyebrow {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

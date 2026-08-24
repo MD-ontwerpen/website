@@ -1,0 +1,47 @@
+# -*- coding: utf-8 -*-
+"""
+Shared service list for the homepage grid and the sitemap.
+The long-form article copy lives in build-service-pages.py.
+"""
+
+SERVICES = [
+    dict(slug="architectuur", titel="Architectuur",
+         kort="Ruimtelijk concept, massa en gevel — van schetsontwerp tot definitief ontwerp.",
+         alt="Doorsnede van een gebouw met de architectonische hoofdvorm gemarkeerd"),
+    dict(slug="bouwkunde", titel="Bouwkunde",
+         kort="Technische uitwerking, details en materialisatie tot uitvoerbare tekeningen.",
+         alt="Doorsnede van een gebouw met de gevelopbouw en wandlagen gemarkeerd"),
+    dict(slug="constructieleer", titel="Constructieleer",
+         kort="Draagconstructie, krachtsafdracht en fundering, getoetst aan de Eurocode.",
+         alt="Doorsnede van een gebouw met kolommen, vloeren en fundering gemarkeerd"),
+    dict(slug="brandveiligheid", titel="Brandveiligheid",
+         kort="Compartimentering, vluchtroutes en WBDBO volgens het Bbl.",
+         alt="Doorsnede van een gebouw met vluchtroutes en een brandcompartiment gemarkeerd"),
+    dict(slug="installatietechniek", titel="Installatietechniek",
+         kort="Klimaat, ventilatie en elektra — inclusief de ruimte die ze nodig hebben.",
+         alt="Doorsnede van een gebouw met de installatieschacht en leidingtracés gemarkeerd"),
+    dict(slug="bouwfysica", titel="Bouwfysica",
+         kort="Isolatie, koudebruggen, geluid, vocht en daglicht. BENG-berekening.",
+         alt="Doorsnede van een gebouw met de doorlopende thermische schil gemarkeerd"),
+    dict(slug="interieur", titel="Interieur",
+         kort="Indeling, materialisatie, verlichting en maatwerk voor het dagelijks gebruik.",
+         alt="Doorsnede van een gebouw met de binnenruimtes en scheidingswanden gemarkeerd"),
+    dict(slug="landschap", titel="Landschap",
+         kort="Terreininrichting, peilen, waterberging en beplanting rond het gebouw.",
+         alt="Doorsnede van een gebouw met het maaiveld en de beplanting eromheen gemarkeerd"),
+    dict(slug="informatiemodel", titel="Informatiemodel (BIM)",
+         kort="Eén 3D-model als bron voor tekeningen, hoeveelheden en clashcontrole.",
+         alt="Doorsnede van een gebouw met een modelraster en knooppunten gemarkeerd"),
+    dict(slug="vergunnen", titel="Vergunnen",
+         kort="Vooroverleg, toets aan het omgevingsplan en indiening via het Omgevingsloket.",
+         alt="Doorsnede van een gebouw met een vergunningdocument en goedkeuringsstempel"),
+    dict(slug="aanbesteden", titel="Aanbesteden",
+         kort="Bestek, offertes vergelijken op onderdeelniveau en contractvorming.",
+         alt="Doorsnede van een gebouw met vergeleken offertes en een gekozen inschrijving"),
+    dict(slug="bouwen", titel="Bouwen",
+         kort="Directievoering, toezicht op de bouwplaats en beheersing van meerwerk.",
+         alt="Doorsnede van een gebouw in aanbouw met bouwkraan en het gerealiseerde deel gemarkeerd"),
+    dict(slug="opleveren", titel="Opleveren",
+         kort="Opleverinspectie, restpunten, dossier bevoegd gezag en nazorg.",
+         alt="Doorsnede van een voltooid gebouw met een goedkeuringsvinkje"),
+]

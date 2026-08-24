@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MD-ontwerpen — Grafisch ontwerp &amp; visuele identiteit</title>
+    <title>MD-ontwerpen — Architectuur, bouwkunde en bouwbegeleiding</title>
     <meta
       name="description"
-      content="Studio voor grafisch ontwerp, merkidentiteit en digitaal ontwerp. Werk dat helder is, standhoudt en klopt."
+      content="Bureau voor architectuur, bouwkunde en bouwbegeleiding. Van ontwerp en constructie tot vergunning, aanbesteding en oplevering."
     />
     <meta name="theme-color" content="#fafafa" />
     <meta name="robots" content="index, follow" />
@@ -21,10 +21,10 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="MD-ontwerpen — Grafisch ontwerp &amp; visuele identiteit" />
+    <meta property="og:title" content="MD-ontwerpen — Architectuur, bouwkunde en bouwbegeleiding" />
     <meta
       property="og:description"
-      content="Studio voor merkidentiteit, drukwerk en digitaal ontwerp."
+      content="Architectuur, bouwkunde en bouwbegeleiding — van eerste schets tot oplevering."
     />
     <meta property="og:url" content="https://md-ontwerpen.nl/" />
     <meta property="og:locale" content="nl_NL" />
@@ -36,8 +36,8 @@
     <meta property="og:image:alt" content="MD-ontwerpen" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="MD-ontwerpen — Grafisch ontwerp &amp; visuele identiteit" />
-    <meta name="twitter:description" content="Studio voor merkidentiteit, drukwerk en digitaal ontwerp." />
+    <meta name="twitter:title" content="MD-ontwerpen — Architectuur, bouwkunde en bouwbegeleiding" />
+    <meta name="twitter:description" content="Architectuur, bouwkunde en bouwbegeleiding — van eerste schets tot oplevering." />
     <meta name="twitter:image" content="https://md-ontwerpen.nl/assets/img/og-image.png" />
 
     <!--
@@ -64,7 +64,7 @@
         "url": "https://md-ontwerpen.nl/",
         "logo": "https://md-ontwerpen.nl/assets/img/logo.svg",
         "image": "https://md-ontwerpen.nl/assets/img/og-image.png",
-        "description": "Studio voor grafisch ontwerp, merkidentiteit en digitaal ontwerp.",
+        "description": "Bureau voor architectuur, bouwkunde en bouwbegeleiding in Nederland.",
         "knowsLanguage": ["nl", "en"]
       }
     </script>
@@ -110,7 +110,7 @@
         <!-- Desktop nav -->
         <nav class="hidden md:block" aria-label="Hoofdnavigatie">
           <ul class="flex items-center gap-7">
-            <li><a class="nav-link" href="#work" data-i18n="nav.work">Werk</a></li>
+            <li><a class="nav-link" href="#diensten" data-i18n="nav.services">Diensten</a></li>
             <li><a class="nav-link" href="#about" data-i18n="nav.about">Over</a></li>
             <li><a class="nav-link" href="#reviews" data-i18n="nav.reviews">Referenties</a></li>
             <li><a class="nav-link" href="#contact" data-i18n="nav.contact">Contact</a></li>
@@ -175,7 +175,7 @@
         style="border-top: var(--rule) solid var(--border); background-color: var(--bg)"
       >
         <ul class="flex flex-col px-5 py-2">
-          <li><a class="control w-full justify-start text-lg font-medium" href="#work" data-i18n="nav.work">Werk</a></li>
+          <li><a class="control w-full justify-start text-lg font-medium" href="#diensten" data-i18n="nav.services">Diensten</a></li>
           <li><a class="control w-full justify-start text-lg font-medium" href="#about" data-i18n="nav.about">Over</a></li>
           <li><a class="control w-full justify-start text-lg font-medium" href="#reviews" data-i18n="nav.reviews">Referenties</a></li>
           <li><a class="control w-full justify-start text-lg font-medium" href="#contact" data-i18n="nav.contact">Contact</a></li>
@@ -204,7 +204,7 @@
         </p>
 
         <div class="mt-11 flex flex-wrap gap-4">
-          <a href="#work" class="control btn-primary brut-shadow" data-i18n="hero.cta1">
+          <a href="#diensten" class="control btn-primary brut-shadow" data-i18n="hero.cta1">
             Bekijk het werk
           </a>
           <a href="#contact" class="control btn-secondary" data-i18n="hero.cta2">
@@ -213,152 +213,256 @@
         </div>
       </section>
 
-      <!-- ================= WORK ================= -->
-      <section id="work" class="rule-top">
+      <!-- ================= DIENSTEN ================= -->
+      <section id="diensten" class="rule-top">
         <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
-          <div class="reveal">
-            <p class="eyebrow mb-4" data-i18n="work.eyebrow">Geselecteerd werk</p>
-            <h2 class="headline text-[clamp(2rem,5vw,3.5rem)]" data-i18n="work.title">Projecten</h2>
-            <p class="mt-5 max-w-2xl text-lg" style="color: var(--muted-fg)" data-i18n="work.lead">
-              Een selectie uit recente opdrachten in identiteit, digitaal en drukwerk.
+          <div class="reveal max-w-2xl">
+            <p class="eyebrow mb-4" data-i18n="services.eyebrow">Diensten</p>
+            <h2 class="headline text-[clamp(2rem,5vw,3.5rem)]" data-i18n="services.title">
+              Het hele traject, onder één dak.
+            </h2>
+            <p class="mt-5 text-lg" style="color: var(--muted-fg)" data-i18n="services.lead">
+              Van eerste schets tot oplevering. Elke discipline grijpt in op de volgende, dus
+              worden ze in samenhang uitgewerkt in plaats van na elkaar.
             </p>
           </div>
 
-          <!-- Filters -->
-          <div
-            class="mt-10 flex flex-wrap gap-3"
-            role="group"
-            data-i18n-attr="aria-label:work.filterLabel"
-            aria-label="Filter projecten op categorie"
-          >
-            <button type="button" class="control filter-btn" data-filter="all" aria-pressed="true" data-i18n="filter.all">Alles</button>
-            <button type="button" class="control filter-btn" data-filter="branding" aria-pressed="false" data-i18n="filter.branding">Identiteit</button>
-            <button type="button" class="control filter-btn" data-filter="web" aria-pressed="false" data-i18n="filter.web">Digitaal</button>
-            <button type="button" class="control filter-btn" data-filter="print" aria-pressed="false" data-i18n="filter.print">Drukwerk</button>
-          </div>
-
-          <!-- Screen-reader announcement for filter changes -->
-          <p class="sr-only" role="status" aria-live="polite" data-filter-status></p>
-
-          <ul class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <!-- 1 -->
-            <li class="project-card brut-box brut-shadow reveal" data-category="branding">
-              <svg class="project-thumb" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-                <rect width="400" height="300" fill="var(--muted)" />
-                <rect x="90" y="55" width="220" height="190" fill="none" stroke="var(--fg)" stroke-width="6" />
-                <rect x="130" y="95" width="140" height="110" fill="none" stroke="var(--fg)" stroke-width="6" />
-                <rect x="170" y="135" width="60" height="30" fill="var(--accent)" />
-              </svg>
-              <div class="flex flex-1 flex-col p-6">
-                <p class="eyebrow" data-i18n="p1.cat">Identiteit</p>
-                <h3 class="mt-2 font-display text-xl font-bold" data-i18n="p1.title">Noordlicht Brouwerij</h3>
-                <p class="mt-3 flex-1 text-[0.95rem] leading-relaxed" style="color: var(--muted-fg)" data-i18n="p1.desc">
-                  Volledige merkidentiteit en etiketontwerp voor een ambachtelijke brouwerij.
-                </p>
-              </div>
+          <ul class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <li class="dienst-card brut-box brut-shadow reveal">
+              <a href="diensten/architectuur.html" class="flex h-full flex-col">
+                <img
+                  src="assets/img/diensten/architectuur.svg"
+                  alt="Doorsnede van een gebouw met de architectonische hoofdvorm gemarkeerd"
+                  width="800" height="520" loading="lazy"
+                  class="dienst-thumb"
+                />
+                <span class="flex flex-1 flex-col p-5">
+                  <span class="font-display text-lg font-bold">Architectuur</span>
+                  <span class="mt-2 flex-1 text-[0.9rem] leading-relaxed" style="color: var(--muted-fg)">Ruimtelijk concept, massa en gevel — van schetsontwerp tot definitief ontwerp.</span>
+                  <span class="eyebrow mt-4 inline-flex items-center gap-2" style="color: var(--accent-strong)">
+                    Lees meer
+                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </span>
+                </span>
+              </a>
             </li>
-
-            <!-- 2 -->
-            <li class="project-card brut-box brut-shadow reveal" data-category="web">
-              <svg class="project-thumb" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-                <rect width="400" height="300" fill="var(--muted)" />
-                <g stroke="var(--fg)" stroke-width="6">
-                  <path d="M-20 220 L 180 20" /><path d="M40 220 L 240 20" />
-                  <path d="M100 220 L 300 20" /><path d="M160 220 L 360 20" />
-                  <path d="M220 220 L 420 20" />
-                </g>
-                <rect x="60" y="230" width="280" height="24" fill="var(--accent)" />
-              </svg>
-              <div class="flex flex-1 flex-col p-6">
-                <p class="eyebrow" data-i18n="p2.cat">Digitaal</p>
-                <h3 class="mt-2 font-display text-xl font-bold" data-i18n="p2.title">Kade 14</h3>
-                <p class="mt-3 flex-1 text-[0.95rem] leading-relaxed" style="color: var(--muted-fg)" data-i18n="p2.desc">
-                  Website en boekingssysteem voor een culturele broedplaats.
-                </p>
-              </div>
+            <li class="dienst-card brut-box brut-shadow reveal">
+              <a href="diensten/bouwkunde.html" class="flex h-full flex-col">
+                <img
+                  src="assets/img/diensten/bouwkunde.svg"
+                  alt="Doorsnede van een gebouw met de gevelopbouw en wandlagen gemarkeerd"
+                  width="800" height="520" loading="lazy"
+                  class="dienst-thumb"
+                />
+                <span class="flex flex-1 flex-col p-5">
+                  <span class="font-display text-lg font-bold">Bouwkunde</span>
+                  <span class="mt-2 flex-1 text-[0.9rem] leading-relaxed" style="color: var(--muted-fg)">Technische uitwerking, details en materialisatie tot uitvoerbare tekeningen.</span>
+                  <span class="eyebrow mt-4 inline-flex items-center gap-2" style="color: var(--accent-strong)">
+                    Lees meer
+                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </span>
+                </span>
+              </a>
             </li>
-
-            <!-- 3 -->
-            <li class="project-card brut-box brut-shadow reveal" data-category="print">
-              <svg class="project-thumb" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-                <rect width="400" height="300" fill="var(--muted)" />
-                <g fill="var(--fg)">
-                  <rect x="70" y="70" width="30" height="30" /><rect x="140" y="70" width="30" height="30" />
-                  <rect x="210" y="70" width="30" height="30" /><rect x="280" y="70" width="30" height="30" />
-                  <rect x="70" y="140" width="30" height="30" /><rect x="210" y="140" width="30" height="30" />
-                  <rect x="280" y="140" width="30" height="30" />
-                  <rect x="70" y="210" width="30" height="30" /><rect x="140" y="210" width="30" height="30" />
-                  <rect x="280" y="210" width="30" height="30" />
-                </g>
-                <rect x="140" y="140" width="30" height="30" fill="var(--accent)" />
-              </svg>
-              <div class="flex flex-1 flex-col p-6">
-                <p class="eyebrow" data-i18n="p3.cat">Drukwerk</p>
-                <h3 class="mt-2 font-display text-xl font-bold" data-i18n="p3.title">Jaarverslag 2025</h3>
-                <p class="mt-3 flex-1 text-[0.95rem] leading-relaxed" style="color: var(--muted-fg)" data-i18n="p3.desc">
-                  Redactioneel ontwerp en infographics voor een non-profit.
-                </p>
-              </div>
+            <li class="dienst-card brut-box brut-shadow reveal">
+              <a href="diensten/constructieleer.html" class="flex h-full flex-col">
+                <img
+                  src="assets/img/diensten/constructieleer.svg"
+                  alt="Doorsnede van een gebouw met kolommen, vloeren en fundering gemarkeerd"
+                  width="800" height="520" loading="lazy"
+                  class="dienst-thumb"
+                />
+                <span class="flex flex-1 flex-col p-5">
+                  <span class="font-display text-lg font-bold">Constructieleer</span>
+                  <span class="mt-2 flex-1 text-[0.9rem] leading-relaxed" style="color: var(--muted-fg)">Draagconstructie, krachtsafdracht en fundering, getoetst aan de Eurocode.</span>
+                  <span class="eyebrow mt-4 inline-flex items-center gap-2" style="color: var(--accent-strong)">
+                    Lees meer
+                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </span>
+                </span>
+              </a>
             </li>
-
-            <!-- 4 -->
-            <li class="project-card brut-box brut-shadow reveal" data-category="branding">
-              <svg class="project-thumb" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-                <rect width="400" height="300" fill="var(--muted)" />
-                <path d="M200 60 A 90 90 0 0 1 200 240 Z" fill="var(--fg)" />
-                <path d="M200 60 A 90 90 0 0 0 200 240 Z" fill="none" stroke="var(--fg)" stroke-width="6" />
-                <circle cx="200" cy="150" r="26" fill="var(--accent)" />
-              </svg>
-              <div class="flex flex-1 flex-col p-6">
-                <p class="eyebrow" data-i18n="p4.cat">Identiteit</p>
-                <h3 class="mt-2 font-display text-xl font-bold" data-i18n="p4.title">Studio Vlinder</h3>
-                <p class="mt-3 flex-1 text-[0.95rem] leading-relaxed" style="color: var(--muted-fg)" data-i18n="p4.desc">
-                  Logo, typografisch systeem en huisstijl voor een fotograaf.
-                </p>
-              </div>
+            <li class="dienst-card brut-box brut-shadow reveal">
+              <a href="diensten/brandveiligheid.html" class="flex h-full flex-col">
+                <img
+                  src="assets/img/diensten/brandveiligheid.svg"
+                  alt="Doorsnede van een gebouw met vluchtroutes en een brandcompartiment gemarkeerd"
+                  width="800" height="520" loading="lazy"
+                  class="dienst-thumb"
+                />
+                <span class="flex flex-1 flex-col p-5">
+                  <span class="font-display text-lg font-bold">Brandveiligheid</span>
+                  <span class="mt-2 flex-1 text-[0.9rem] leading-relaxed" style="color: var(--muted-fg)">Compartimentering, vluchtroutes en WBDBO volgens het Bbl.</span>
+                  <span class="eyebrow mt-4 inline-flex items-center gap-2" style="color: var(--accent-strong)">
+                    Lees meer
+                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </span>
+                </span>
+              </a>
             </li>
-
-            <!-- 5 -->
-            <li class="project-card brut-box brut-shadow reveal" data-category="web">
-              <svg class="project-thumb" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-                <rect width="400" height="300" fill="var(--muted)" />
-                <g fill="var(--fg)">
-                  <rect x="70" y="180" width="46" height="70" /><rect x="136" y="130" width="46" height="120" />
-                  <rect x="268" y="95" width="46" height="155" />
-                </g>
-                <rect x="202" y="60" width="46" height="190" fill="var(--accent)" />
-              </svg>
-              <div class="flex flex-1 flex-col p-6">
-                <p class="eyebrow" data-i18n="p5.cat">Digitaal</p>
-                <h3 class="mt-2 font-display text-xl font-bold" data-i18n="p5.title">Veldkeuken</h3>
-                <p class="mt-3 flex-1 text-[0.95rem] leading-relaxed" style="color: var(--muted-fg)" data-i18n="p5.desc">
-                  Bestelplatform en menukaartsysteem voor een restaurantgroep.
-                </p>
-              </div>
+            <li class="dienst-card brut-box brut-shadow reveal">
+              <a href="diensten/installatietechniek.html" class="flex h-full flex-col">
+                <img
+                  src="assets/img/diensten/installatietechniek.svg"
+                  alt="Doorsnede van een gebouw met de installatieschacht en leidingtracés gemarkeerd"
+                  width="800" height="520" loading="lazy"
+                  class="dienst-thumb"
+                />
+                <span class="flex flex-1 flex-col p-5">
+                  <span class="font-display text-lg font-bold">Installatietechniek</span>
+                  <span class="mt-2 flex-1 text-[0.9rem] leading-relaxed" style="color: var(--muted-fg)">Klimaat, ventilatie en elektra — inclusief de ruimte die ze nodig hebben.</span>
+                  <span class="eyebrow mt-4 inline-flex items-center gap-2" style="color: var(--accent-strong)">
+                    Lees meer
+                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </span>
+                </span>
+              </a>
             </li>
-
-            <!-- 6 -->
-            <li class="project-card brut-box brut-shadow reveal" data-category="print">
-              <svg class="project-thumb" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-                <rect width="400" height="300" fill="var(--muted)" />
-                <g stroke="var(--fg)" stroke-width="6">
-                  <path d="M120 90 v120 M60 150 h120" /><path d="M280 90 v120 M220 150 h120" />
-                </g>
-                <path d="M200 30 v240" stroke="var(--accent)" stroke-width="6" />
-              </svg>
-              <div class="flex flex-1 flex-col p-6">
-                <p class="eyebrow" data-i18n="p6.cat">Drukwerk</p>
-                <h3 class="mt-2 font-display text-xl font-bold" data-i18n="p6.title">Tentoonstelling — Vorm</h3>
-                <p class="mt-3 flex-1 text-[0.95rem] leading-relaxed" style="color: var(--muted-fg)" data-i18n="p6.desc">
-                  Affiches, signage en catalogus voor een museumtentoonstelling.
-                </p>
-              </div>
+            <li class="dienst-card brut-box brut-shadow reveal">
+              <a href="diensten/bouwfysica.html" class="flex h-full flex-col">
+                <img
+                  src="assets/img/diensten/bouwfysica.svg"
+                  alt="Doorsnede van een gebouw met de doorlopende thermische schil gemarkeerd"
+                  width="800" height="520" loading="lazy"
+                  class="dienst-thumb"
+                />
+                <span class="flex flex-1 flex-col p-5">
+                  <span class="font-display text-lg font-bold">Bouwfysica</span>
+                  <span class="mt-2 flex-1 text-[0.9rem] leading-relaxed" style="color: var(--muted-fg)">Isolatie, koudebruggen, geluid, vocht en daglicht. BENG-berekening.</span>
+                  <span class="eyebrow mt-4 inline-flex items-center gap-2" style="color: var(--accent-strong)">
+                    Lees meer
+                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li class="dienst-card brut-box brut-shadow reveal">
+              <a href="diensten/interieur.html" class="flex h-full flex-col">
+                <img
+                  src="assets/img/diensten/interieur.svg"
+                  alt="Doorsnede van een gebouw met de binnenruimtes en scheidingswanden gemarkeerd"
+                  width="800" height="520" loading="lazy"
+                  class="dienst-thumb"
+                />
+                <span class="flex flex-1 flex-col p-5">
+                  <span class="font-display text-lg font-bold">Interieur</span>
+                  <span class="mt-2 flex-1 text-[0.9rem] leading-relaxed" style="color: var(--muted-fg)">Indeling, materialisatie, verlichting en maatwerk voor het dagelijks gebruik.</span>
+                  <span class="eyebrow mt-4 inline-flex items-center gap-2" style="color: var(--accent-strong)">
+                    Lees meer
+                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li class="dienst-card brut-box brut-shadow reveal">
+              <a href="diensten/landschap.html" class="flex h-full flex-col">
+                <img
+                  src="assets/img/diensten/landschap.svg"
+                  alt="Doorsnede van een gebouw met het maaiveld en de beplanting eromheen gemarkeerd"
+                  width="800" height="520" loading="lazy"
+                  class="dienst-thumb"
+                />
+                <span class="flex flex-1 flex-col p-5">
+                  <span class="font-display text-lg font-bold">Landschap</span>
+                  <span class="mt-2 flex-1 text-[0.9rem] leading-relaxed" style="color: var(--muted-fg)">Terreininrichting, peilen, waterberging en beplanting rond het gebouw.</span>
+                  <span class="eyebrow mt-4 inline-flex items-center gap-2" style="color: var(--accent-strong)">
+                    Lees meer
+                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li class="dienst-card brut-box brut-shadow reveal">
+              <a href="diensten/informatiemodel.html" class="flex h-full flex-col">
+                <img
+                  src="assets/img/diensten/informatiemodel.svg"
+                  alt="Doorsnede van een gebouw met een modelraster en knooppunten gemarkeerd"
+                  width="800" height="520" loading="lazy"
+                  class="dienst-thumb"
+                />
+                <span class="flex flex-1 flex-col p-5">
+                  <span class="font-display text-lg font-bold">Informatiemodel (BIM)</span>
+                  <span class="mt-2 flex-1 text-[0.9rem] leading-relaxed" style="color: var(--muted-fg)">Eén 3D-model als bron voor tekeningen, hoeveelheden en clashcontrole.</span>
+                  <span class="eyebrow mt-4 inline-flex items-center gap-2" style="color: var(--accent-strong)">
+                    Lees meer
+                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li class="dienst-card brut-box brut-shadow reveal">
+              <a href="diensten/vergunnen.html" class="flex h-full flex-col">
+                <img
+                  src="assets/img/diensten/vergunnen.svg"
+                  alt="Doorsnede van een gebouw met een vergunningdocument en goedkeuringsstempel"
+                  width="800" height="520" loading="lazy"
+                  class="dienst-thumb"
+                />
+                <span class="flex flex-1 flex-col p-5">
+                  <span class="font-display text-lg font-bold">Vergunnen</span>
+                  <span class="mt-2 flex-1 text-[0.9rem] leading-relaxed" style="color: var(--muted-fg)">Vooroverleg, toets aan het omgevingsplan en indiening via het Omgevingsloket.</span>
+                  <span class="eyebrow mt-4 inline-flex items-center gap-2" style="color: var(--accent-strong)">
+                    Lees meer
+                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li class="dienst-card brut-box brut-shadow reveal">
+              <a href="diensten/aanbesteden.html" class="flex h-full flex-col">
+                <img
+                  src="assets/img/diensten/aanbesteden.svg"
+                  alt="Doorsnede van een gebouw met vergeleken offertes en een gekozen inschrijving"
+                  width="800" height="520" loading="lazy"
+                  class="dienst-thumb"
+                />
+                <span class="flex flex-1 flex-col p-5">
+                  <span class="font-display text-lg font-bold">Aanbesteden</span>
+                  <span class="mt-2 flex-1 text-[0.9rem] leading-relaxed" style="color: var(--muted-fg)">Bestek, offertes vergelijken op onderdeelniveau en contractvorming.</span>
+                  <span class="eyebrow mt-4 inline-flex items-center gap-2" style="color: var(--accent-strong)">
+                    Lees meer
+                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li class="dienst-card brut-box brut-shadow reveal">
+              <a href="diensten/bouwen.html" class="flex h-full flex-col">
+                <img
+                  src="assets/img/diensten/bouwen.svg"
+                  alt="Doorsnede van een gebouw in aanbouw met bouwkraan en het gerealiseerde deel gemarkeerd"
+                  width="800" height="520" loading="lazy"
+                  class="dienst-thumb"
+                />
+                <span class="flex flex-1 flex-col p-5">
+                  <span class="font-display text-lg font-bold">Bouwen</span>
+                  <span class="mt-2 flex-1 text-[0.9rem] leading-relaxed" style="color: var(--muted-fg)">Directievoering, toezicht op de bouwplaats en beheersing van meerwerk.</span>
+                  <span class="eyebrow mt-4 inline-flex items-center gap-2" style="color: var(--accent-strong)">
+                    Lees meer
+                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li class="dienst-card brut-box brut-shadow reveal">
+              <a href="diensten/opleveren.html" class="flex h-full flex-col">
+                <img
+                  src="assets/img/diensten/opleveren.svg"
+                  alt="Doorsnede van een voltooid gebouw met een goedkeuringsvinkje"
+                  width="800" height="520" loading="lazy"
+                  class="dienst-thumb"
+                />
+                <span class="flex flex-1 flex-col p-5">
+                  <span class="font-display text-lg font-bold">Opleveren</span>
+                  <span class="mt-2 flex-1 text-[0.9rem] leading-relaxed" style="color: var(--muted-fg)">Opleverinspectie, restpunten, dossier bevoegd gezag en nazorg.</span>
+                  <span class="eyebrow mt-4 inline-flex items-center gap-2" style="color: var(--accent-strong)">
+                    Lees meer
+                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </span>
+                </span>
+              </a>
             </li>
           </ul>
-
-          <p class="mt-10 text-lg" style="color: var(--muted-fg)" data-filter-empty hidden data-i18n="work.empty">
-            Geen projecten in deze categorie.
-          </p>
         </div>
       </section>
 
