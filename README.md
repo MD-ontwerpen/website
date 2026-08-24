@@ -53,6 +53,44 @@ python build-service-pages.py
 `build-home.py` and `build-copy.py` were one-time migration scripts for the rewrite.
 They are kept for reference but are not idempotent - do not re-run them.
 
+## The layered 3D model
+
+`assets/models/gebouw-lagen.glb` (86 KB, 2,632 triangles) holds one building whose
+meshes are named `layer_<slug>__<part>`. The viewer groups meshes by that prefix, so
+selecting a service highlights its layer and ghosts the rest - the 3D counterpart of
+the per-service drawings.
+
+```bash
+python build-model.py
+```
+
+Two things that are easy to get wrong here:
+
+- **The model is authored Z-up** (building convention) and rotated to **Y-up** before
+  export, because glTF requires Y-up. Without that rotation the building loads lying
+  on its side in every viewer.
+- **Materials, not face colours.** Face colours are baked to per-vertex data on export,
+  which needs scipy and inflates the file. One PBR material per mesh is also what the
+  viewer swaps when highlighting.
+
+The viewer (`assets/js/viewer.js`) is vanilla Three.js loaded from a CDN via the
+**import map in `index.html`** - the three.js addons import from a bare `"three"`
+specifier, which a browser cannot resolve without it. The map points at the minified
+build (692 KB, not 1.3 MB).
+
+Guards, per the `3d-web-experience` skill's anti-patterns:
+
+- Nothing is downloaded until the visitor presses the button, so the page keeps its
+  sub-second load; the static drawing shows until then
+- 3D is not offered at all without WebGL, or under reduced-motion, save-data, or on
+  a machine reporting two cores or fewer - and it says why rather than failing silently
+- Explicit load progress, because a blank canvas reads as broken
+- Device pixel ratio capped at 2, and frames render on demand rather than in a loop
+
+**The model is placeholder massing, not a real project.** Replace it with an ArchiCAD
+export when one is available; keep the `layer_<slug>__<part>` naming and the viewer
+works unchanged.
+
 ## Still placeholder
 
 | What | Where | Currently |
