@@ -17,3 +17,11 @@ assets/img/logo*.jpg
 assets/img/logo*.jpeg
 assets/img/logo*.psd
 assets/img/logo*.ai
+
+# Version snapshots and working folders. `website/` is what GitHub Pages
+# publishes, so a committed snapshot would put a duplicate of every page at
+# md-ontwerpen.nl/version%201/.
+version */
+
+# Bytecode from the build scripts
+__pycache__/
