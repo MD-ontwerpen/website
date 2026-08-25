@@ -1,0 +1,200 @@
+:root {
+  --ink: #000;
+  --paper: #fff;
+  /* Hairline between the three sections, and between the nav panel's rows. */
+  --band-line: rgba(0, 0, 0, 0.18);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+/* Fixed to the viewport rather than to <main>, so it spans the full area
+   instead of stopping at the main frame's box. The header and footer sit on
+   top of it at z-index 1.
+
+   cover: the image keeps its aspect ratio and is scaled until it fills the
+   viewport, so whatever overflows the window is trimmed off. --paper only
+   shows in the moment before the image decodes. */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--paper);
+  z-index: 0;
+}
+
+.site-header,
+.site-footer {
+  position: relative;
+  z-index: 1;
+  color: var(--ink);
+}
+
+/* Deliberately given no z-index. Setting one would make the main frame a
+   stacking context, trapping the fixed backdrop inside it and painting the
+   image over the header instead of behind it. */
+.site-main {
+  position: relative;
+}
+
+/* Anything placed in the main frame sits above the backdrop. */
+.site-main > :not(.backdrop) {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* The bands stay fully transparent, so the backdrop runs uninterrupted from top
+   to bottom. A hairline marks where each section ends. */
+.site-header,
+.site-footer {
+  display: flex;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--band-line);
+}
+
+.site-footer {
+  border-top: 1px solid var(--band-line);
+}
+
+/* The artwork is a single flat colour, so it is applied as a mask over a
+   currentColor fill rather than as an <img>. currentColor inside an externally
+   referenced SVG does not inherit the host page's colour, so an <img> could not
+   be recoloured against a changing backdrop. aspect-ratio matches the SVG
+   viewBox, so the box is reserved before the mask loads and the header never
+   shifts. The SVG has no background rect - it is transparent by construction. */
+.site-logo {
+  display: block;
+  height: 2.5rem;
+  aspect-ratio: 2200 / 1368;
+  background-color: currentColor;
+  -webkit-mask: url("../img/logo.svg") no-repeat center / contain;
+  mask: url("../img/logo.svg") no-repeat center / contain;
+}
+
+@media (min-width: 640px) {
+  .site-logo {
+    height: 3.25rem;
+  }
+}
+
+.site-footer {
+  font-size: 0.875rem;
+}
+
+/* The logo sits left, the toggle right. */
+.site-header {
+  justify-content: space-between;
+}
+
+/* 44px box for the touch target; the bars themselves stay 24px wide. */
+.nav-toggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Three stripes: the element is the middle bar, the pseudo-elements the outer
+   two. currentColor, so the toggle always matches the logo beside it. */
+.nav-toggle-bars {
+  position: relative;
+}
+
+.nav-toggle-bars,
+.nav-toggle-bars::before,
+.nav-toggle-bars::after {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: currentColor;
+}
+
+.nav-toggle-bars::before,
+.nav-toggle-bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle-bars::before {
+  top: -7px;
+}
+
+.nav-toggle-bars::after {
+  top: 7px;
+}
+
+/* Anchored under the header band, right-aligned with the toggle. Opaque, so
+   the menu stays readable whatever the backdrop is doing behind it. */
+/* Inside <header>, so it would otherwise inherit the header's white ink onto
+   its own white panel. */
+.site-nav {
+  color: var(--ink);
+  position: absolute;
+  top: 100%;
+  right: 1.5rem;
+  min-width: 15rem;
+  background: var(--paper);
+  border: 1px solid var(--band-line);
+}
+
+.site-nav[hidden] {
+  display: none;
+}
+
+.site-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav li + li {
+  border-top: 1px solid var(--band-line);
+}
+
+.site-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 1.25rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  background: #f0f0f0;
+}
