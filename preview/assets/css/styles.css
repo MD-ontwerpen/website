@@ -34,9 +34,9 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* 10% transparent. --paper shows through behind it, so the render reads
-     slightly lightened rather than washed toward grey. */
-  opacity: 0.9;
+  /* 20% transparent. --paper shows through behind it, so the render reads
+     lightened rather than washed toward grey. */
+  opacity: 0.8;
   background: var(--paper);
   z-index: 0;
 }
