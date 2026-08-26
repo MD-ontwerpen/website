@@ -414,6 +414,23 @@ body {
    the menu button at every width, and the diensten page's five service names
    need 666px on their own. At 900px that totalled 961px in a 900px viewport
    and pushed the button off-screen. */
+/* Narrow screens: the copyright scales down rather than wrapping, so it stays
+   on one line beside the link. Once it cannot wrap, the link no longer needs a
+   reserved width to hold the footer's height steady - a single line on each
+   side does that on its own, so the copyright gets the full remaining room. */
+@media (max-width: 599px) {
+  .site-footer-copy {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: clamp(0.625rem, 2.6vw, 0.875rem);
+  }
+
+  .site-footer-up {
+    flex: 0 0 auto;
+  }
+}
+
 @media (max-width: 1023px) {
   /* Below the breakpoint the contextual nav gives way entirely - the menu
      button carries the navigation, and it lists these items anyway. */
