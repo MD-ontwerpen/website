@@ -46,18 +46,6 @@
   box-sizing: border-box;
 }
 
-/* Makes the footer's back-to-top link glide rather than jump. On the root
-   element so it works from the link alone, without script. */
-html {
-  scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
-
 /* Buttons do not inherit the page font on their own. */
 button {
   font: inherit;
@@ -176,7 +164,7 @@ body {
   font-size: 0.875rem;
 }
 
-.site-footer-top {
+.site-footer-up {
   display: flex;
   align-items: center;
   min-height: 44px;
@@ -187,7 +175,7 @@ body {
   text-decoration-thickness: 2px;
 }
 
-.site-footer-top:focus-visible {
+.site-footer-up:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
