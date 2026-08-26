@@ -17,8 +17,17 @@ import shutil
 
 SRC = "version 2"
 DST = "preview"
-PAGES = ["index.html", "diensten/index.html",
-         "en/index.html", "en/services/index.html"]
+def find_pages():
+    """Every index.html under SRC, excluding assets. Discovered rather than
+    listed: the page set grows, and a stale list silently ships fewer pages."""
+    found = []
+    for root, dirs, files in os.walk(SRC):
+        dirs[:] = [d for d in dirs if d not in ("assets", "__pycache__")]
+        for name in files:
+            if name == "index.html":
+                rel = os.path.relpath(os.path.join(root, name), SRC)
+                found.append(rel.replace(os.sep, "/"))
+    return sorted(found)
 ASSETS = [
     "assets/css/styles.css",
     "assets/js/nav.js",
@@ -53,7 +62,7 @@ def main():
     for rel in ASSETS:
         copy(rel)
 
-    for rel in PAGES:
+    for rel in find_pages():
         path = copy(rel)
         with open(path, encoding="utf-8") as fh:
             html = fh.read()
@@ -73,7 +82,7 @@ def main():
             raise SystemExit("%s: noindex not applied exactly once" % rel)
         print("  %-24s noindex applied" % rel)
 
-    print("synced %d pages, %d assets" % (len(PAGES), len(ASSETS)))
+    print("synced %d pages, %d assets" % (len(find_pages()), len(ASSETS)))
 
 
 if __name__ == "__main__":

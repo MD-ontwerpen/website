@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Services — MD-ontwerpen — preview</title>
+    <title>Window alterations — MD-ontwerpen — preview</title>
     <!-- Work in progress, published only so it can be looked at on a real URL.
          Kept out of the index deliberately: the live site at / is the one that
          should rank, and this page would otherwise compete with it. Do not add
@@ -11,76 +11,56 @@
          fetch the page to see this tag. -->
     <meta name="robots" content="noindex, nofollow" />
 
-    <!-- The font is self-hosted and declared in styles.css. Preloaded because
-         it is discovered only once the stylesheet has parsed, which otherwise
-         delays it by a whole round trip. Only the latin subset is preloaded -
-         latin-ext is fetched on demand by unicode-range. -->
-    <link
-      rel="preload"
-      href="../../assets/fonts/roboto-700-latin.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="../../assets/fonts/roboto-400-latin.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
+    <!-- Self-hosted and declared in styles.css. Preloaded because it is
+         discovered only once the stylesheet has parsed, which otherwise costs
+         a round trip. Only latin is preloaded; latin-ext is fetched on demand
+         by unicode-range. -->
+    <link rel="preload" href="../../assets/fonts/roboto-700-latin.woff2"
+          as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fonts/roboto-400-latin.woff2"
+          as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../assets/css/styles.css" />
   </head>
   <body>
     <header class="site-header">
-      <!-- Pinned black rather than currentColor: the mark is a fixed brand
-           asset and should not follow the surrounding ink. -->
       <a class="site-logo" href="../" aria-label="MD-ontwerpen, to the homepage"></a>
 
-      <!-- Contextual: this is the services level. Inline from 1024px up, hidden below it,
-           where the menu button carries the navigation instead. -->
+      <!-- Contextual: shows the level this page belongs to. Inline from 1024px
+           up; below that the menu button carries the navigation instead. -->
       <nav class="site-nav" aria-label="Page menu">
         <ul>
-          <li><a href="./" aria-current="page">Window alterations</a></li>
-          <li><a href="#">Extensions</a></li>
-          <li><a href="#">Roof extensions</a></li>
-          <li><a href="#">Structural openings</a></li>
-          <li><a href="#">Conversions</a></li>
+          <li><a href="./" aria-current="page"><span>Window alterations</span></a></li>
+          <li><a href="extensions/"><span>Extensions</span></a></li>
+          <li><a href="roof-extensions/"><span>Roof extensions</span></a></li>
+          <li><a href="structural-openings/"><span>Structural openings</span></a></li>
+          <li><a href="conversions/"><span>Conversions</span></a></li>
         </ul>
       </nav>
 
       <ul class="lang-switch">
-          <li><a href="../../diensten/" hreflang="nl">NL</a></li>
-          <li><a href="./" hreflang="en" aria-current="true">EN</a></li>
+        <li><a href="./" hreflang="en" aria-current="true">EN</a></li>
+        <li><a href="../../diensten/" hreflang="nl">NL</a></li>
       </ul>
 
-      <!-- Available at every width, not just the narrow one: it opens the whole
-           navigation, which the contextual header nav deliberately does not
-           show. -->
-      <button
-        class="nav-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="hoofdmenu"
-        aria-label="Open menu"
-        data-label-open="Open menu"
-        data-label-close="Close menu"
-      >
+      <!-- Available at every width: it opens the whole navigation, which the
+           contextual header nav deliberately does not show. -->
+      <button class="nav-toggle" type="button" aria-expanded="false"
+              aria-controls="hoofdmenu" aria-label="Open menu"
+              data-label-open="Open menu" data-label-close="Close menu">
         <span class="nav-toggle-bars" aria-hidden="true"></span>
       </button>
 
       <nav class="site-menu" id="hoofdmenu" data-open="false" aria-label="Main menu">
         <ul>
-          <li><a href="../">Home</a></li>
-          <li><a href="../services/" aria-current="page">Services</a></li>
-            <li class="site-menu-sub"><a href="#">Window alterations</a></li>
-            <li class="site-menu-sub"><a href="#">Extensions</a></li>
-            <li class="site-menu-sub"><a href="#">Roof extensions</a></li>
-            <li class="site-menu-sub"><a href="#">Structural openings</a></li>
-            <li class="site-menu-sub"><a href="#">Conversions</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">References</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="../"><span>Home</span></a></li>
+          <li><a href="./" aria-current="page"><span>Services</span></a></li>
+            <li class="site-menu-sub"><a href="extensions/"><span>Extensions</span></a></li>
+            <li class="site-menu-sub"><a href="roof-extensions/"><span>Roof extensions</span></a></li>
+            <li class="site-menu-sub"><a href="structural-openings/"><span>Structural openings</span></a></li>
+            <li class="site-menu-sub"><a href="conversions/"><span>Conversions</span></a></li>
+          <li><a href="../about/"><span>About</span></a></li>
+          <li><a href="../references/"><span>References</span></a></li>
+          <li><a href="../contact/"><span>Contact</span></a></li>
         </ul>
       </nav>
     </header>
@@ -93,7 +73,7 @@
 
     <footer class="site-footer">
       <span class="site-footer-copy">&copy; 2026 MD-ontwerpen. All rights reserved.</span>
-      <a class="site-footer-up" href="../">One level up</a>
+      <a class="site-footer-up" href="../"><span>One level up</span></a>
     </footer>
 
     <script src="../../assets/js/nav.js" defer></script>

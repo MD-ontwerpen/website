@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MD-ontwerpen — preview</title>
+    <title>Transformaties — MD-ontwerpen — preview</title>
     <!-- Work in progress, published only so it can be looked at on a real URL.
          Kept out of the index deliberately: the live site at / is the one that
          should rank, and this page would otherwise compete with it. Do not add
@@ -15,30 +15,31 @@
          discovered only once the stylesheet has parsed, which otherwise costs
          a round trip. Only latin is preloaded; latin-ext is fetched on demand
          by unicode-range. -->
-    <link rel="preload" href="assets/fonts/roboto-700-latin.woff2"
+    <link rel="preload" href="../../assets/fonts/roboto-700-latin.woff2"
           as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fonts/roboto-400-latin.woff2"
+    <link rel="preload" href="../../assets/fonts/roboto-400-latin.woff2"
           as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
   </head>
   <body>
     <header class="site-header">
-      <a class="site-logo" href="./" aria-label="MD-ontwerpen, naar de homepage"></a>
+      <a class="site-logo" href="../../" aria-label="MD-ontwerpen, naar de homepage"></a>
 
       <!-- Contextual: shows the level this page belongs to. Inline from 1024px
            up; below that the menu button carries the navigation instead. -->
       <nav class="site-nav" aria-label="Paginamenu">
         <ul>
-          <li><a href="diensten/"><span>Diensten</span></a></li>
-          <li><a href="over/"><span>Over</span></a></li>
-          <li><a href="referenties/"><span>Referenties</span></a></li>
-          <li><a href="contact/"><span>Contact</span></a></li>
+          <li><a href="../"><span>Kozijnwijzigingen</span></a></li>
+          <li><a href="../uitbouwen/"><span>Uitbouwen</span></a></li>
+          <li><a href="../dakopbouwen/"><span>Dakopbouwen</span></a></li>
+          <li><a href="../muurdoorbraken/"><span>Muurdoorbraken</span></a></li>
+          <li><a href="./" aria-current="page"><span>Transformaties</span></a></li>
         </ul>
       </nav>
 
       <ul class="lang-switch">
         <li><a href="./" hreflang="nl" aria-current="true">NL</a></li>
-        <li><a href="en/" hreflang="en">EN</a></li>
+        <li><a href="../../en/services/conversions/" hreflang="en">EN</a></li>
       </ul>
 
       <!-- Available at every width: it opens the whole navigation, which the
@@ -51,15 +52,15 @@
 
       <nav class="site-menu" id="hoofdmenu" data-open="false" aria-label="Hoofdmenu">
         <ul>
-          <li><a href="./" aria-current="page"><span>Home</span></a></li>
-          <li><a href="diensten/"><span>Diensten</span></a></li>
-            <li class="site-menu-sub"><a href="diensten/uitbouwen/"><span>Uitbouwen</span></a></li>
-            <li class="site-menu-sub"><a href="diensten/dakopbouwen/"><span>Dakopbouwen</span></a></li>
-            <li class="site-menu-sub"><a href="diensten/muurdoorbraken/"><span>Muurdoorbraken</span></a></li>
-            <li class="site-menu-sub"><a href="diensten/transformaties/"><span>Transformaties</span></a></li>
-          <li><a href="over/"><span>Over</span></a></li>
-          <li><a href="referenties/"><span>Referenties</span></a></li>
-          <li><a href="contact/"><span>Contact</span></a></li>
+          <li><a href="../../"><span>Home</span></a></li>
+          <li><a href="../"><span>Diensten</span></a></li>
+            <li class="site-menu-sub"><a href="../uitbouwen/"><span>Uitbouwen</span></a></li>
+            <li class="site-menu-sub"><a href="../dakopbouwen/"><span>Dakopbouwen</span></a></li>
+            <li class="site-menu-sub"><a href="../muurdoorbraken/"><span>Muurdoorbraken</span></a></li>
+            <li class="site-menu-sub"><a href="./" aria-current="page"><span>Transformaties</span></a></li>
+          <li><a href="../../over/"><span>Over</span></a></li>
+          <li><a href="../../referenties/"><span>Referenties</span></a></li>
+          <li><a href="../../contact/"><span>Contact</span></a></li>
         </ul>
       </nav>
     </header>
@@ -67,14 +68,14 @@
     <main class="site-main">
       <!-- Carries on behind the header and footer bands. The modifier decides
            whether it fills the viewport or is shown whole on white. -->
-      <img class="backdrop backdrop--contain" src="assets/img/home.jpg" alt="" />
+      <img class="backdrop backdrop--cover" src="../../assets/img/diensten.jpg" alt="" />
     </main>
 
     <footer class="site-footer">
       <span class="site-footer-copy">&copy; 2026 MD-ontwerpen. Alle rechten voorbehouden.</span>
-      <a class="site-footer-up" href="./" aria-current="page"><span>Home</span></a>
+      <a class="site-footer-up" href="../"><span>Een niveau omhoog</span></a>
     </footer>
 
-    <script src="assets/js/nav.js" defer></script>
+    <script src="../../assets/js/nav.js" defer></script>
   </body>
 </html>

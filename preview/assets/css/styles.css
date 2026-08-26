@@ -339,20 +339,24 @@ body {
 }
 
 /* Everywhere else the rule wipes in from the left on hover, like a line
-   loading. Drawn as a positioned box rather than text-decoration so it clears
-   the descenders and can be animated. */
-.site-nav a,
-.site-menu a,
-.site-footer-up {
+   loading. It is drawn on the label rather than on the link, so it ends where
+   the text ends instead of running the full width of the row - the menu rows
+   and the footer link are both much wider than their text. */
+.site-nav a span,
+.site-menu a span,
+.site-footer-up span {
   position: relative;
+  display: inline-block;
 }
 
-.site-nav a::after,
-.site-menu a::after,
-.site-footer-up::after {
+.site-nav a span::after,
+.site-menu a span::after,
+.site-footer-up span::after {
   content: "";
   position: absolute;
-  bottom: 0.55rem;
+  left: 0;
+  right: 0;
+  bottom: -0.3rem;
   height: 2px;
   background: currentColor;
   transform: scaleX(0);
@@ -360,45 +364,27 @@ body {
   transition: transform 240ms ease;
 }
 
-.site-nav a::after,
-.site-footer-up::after {
-  left: 0;
-  right: 0;
-}
-
-/* Inset to the panel's own padding, so the line sits under the label rather
-   than running the full width of the row. */
-.site-menu a::after {
-  left: 1.25rem;
-  right: 1.25rem;
-}
-
-.site-menu-sub a::after {
-  left: 2.5rem;
-}
-
-.site-nav a:hover::after,
-.site-nav a:focus-visible::after,
-.site-menu a:hover::after,
-.site-menu a:focus-visible::after,
-.site-footer-up:hover::after,
-.site-footer-up:focus-visible::after {
+.site-nav a:hover span::after,
+.site-nav a:focus-visible span::after,
+.site-menu a:hover span::after,
+.site-menu a:focus-visible span::after,
+.site-footer-up:hover span::after,
+.site-footer-up:focus-visible span::after {
   transform: scaleX(1);
 }
 
-/* The page you are on keeps the line permanently, and does not wipe - it is a
-   state, not a response to the pointer. Scoped to the navigation: the footer's
-   Home link is marked current too, but carries no standing rule. */
-.site-nav a[aria-current="page"]::after,
-.site-menu a[aria-current="page"]::after {
+/* The page you are on keeps the rule permanently, and does not wipe - it is a
+   state, not a response to the pointer. */
+.site-nav a[aria-current="page"] span::after,
+.site-menu a[aria-current="page"] span::after {
   transform: scaleX(1);
   transition: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .site-nav a::after,
-  .site-menu a::after,
-  .site-footer-up::after {
+  .site-nav a span::after,
+  .site-menu a span::after,
+  .site-footer-up span::after {
     transition: none;
   }
 }
@@ -444,6 +430,13 @@ body {
   right: 1.5rem;
   display: none;
   min-width: 15rem;
+  /* The page is one viewport tall and does not scroll, so a panel taller than
+     the space below the header put its last rows off-screen and out of reach -
+     Referenties and Contact could not be clicked at all on a short window.
+     The panel scrolls within itself instead. */
+  max-height: calc(100dvh - 8rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   color: var(--ink);
   background: var(--paper);
   border: 1px solid var(--band-line);
