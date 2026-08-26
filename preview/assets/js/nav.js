@@ -47,7 +47,7 @@
 
   /* Crossing the breakpoint relayouts the header underneath an open panel;
      closing it avoids leaving it anchored to a button that has moved. */
-  window.matchMedia("(min-width: 900px)").addEventListener("change", function () {
+  window.matchMedia("(min-width: 1024px)").addEventListener("change", function () {
     setOpen(false);
   });
 })();
