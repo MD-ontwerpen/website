@@ -22,7 +22,8 @@ PAGES = ["index.html", "diensten/index.html",
 ASSETS = [
     "assets/css/styles.css",
     "assets/js/nav.js",
-    "assets/img/achtergrond.jpg",
+    "assets/img/home.jpg",
+    "assets/img/diensten.jpg",
     "assets/img/logo.svg",
     # Apache 2.0 requires the notice to travel with the font files.
     "assets/fonts/roboto-700-latin.woff2",

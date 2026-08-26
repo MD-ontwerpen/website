@@ -94,12 +94,25 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  /* 20% transparent. --paper shows through behind it, so the render reads
-     lightened rather than washed toward grey. */
-  opacity: 0.8;
   background: var(--paper);
   z-index: 0;
+}
+
+/* Interior levels: the render keeps its aspect ratio and is scaled until it
+   fills the viewport, so whatever overflows is trimmed off. 20% transparent,
+   so it reads lightened rather than washed toward grey. */
+.backdrop--cover {
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+/* Home: the site plan is shown whole and at full strength, inset from the edges
+   so it sits on white rather than running to the frame. The inset is in vmin so
+   the margin holds its proportion as the window changes. */
+.backdrop--contain {
+  object-fit: contain;
+  padding: 6vmin;
+  opacity: 1;
 }
 
 .site-header,
