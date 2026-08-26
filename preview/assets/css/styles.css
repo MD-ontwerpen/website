@@ -1,7 +1,9 @@
 :root {
   --ink: #000;
   --paper: #fff;
-  /* Hairline between the three sections, and between the nav panel's rows. */
+  /* The rule between the three sections. Solid and heavy, matching the logo. */
+  --rule: 2px solid #000;
+  /* Lighter, for the menu panel's own row dividers. */
   --band-line: rgba(0, 0, 0, 0.18);
 }
 
@@ -11,12 +13,20 @@
   box-sizing: border-box;
 }
 
+/* Buttons do not inherit the page font on their own. */
+button {
+  font: inherit;
+}
+
 body {
   margin: 0;
   min-height: 100dvh;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Bold everywhere. The logo is unaffected: it is a mask over a painted box,
+     not type, so no font-family reaches it. */
+  font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
   color: var(--ink);
   background: var(--paper);
 }
@@ -72,11 +82,11 @@ body {
 }
 
 .site-header {
-  border-bottom: 1px solid var(--band-line);
+  border-bottom: var(--rule);
 }
 
 .site-footer {
-  border-top: 1px solid var(--band-line);
+  border-top: var(--rule);
 }
 
 /* The artwork is a single flat colour, so it is applied as a mask over a
@@ -109,7 +119,28 @@ body {
 }
 
 .site-footer {
+  justify-content: space-between;
+  gap: 1rem;
+  /* At narrow widths the two halves stack rather than squeezing the link
+     below the width of its own label. */
+  flex-wrap: wrap;
   font-size: 0.875rem;
+}
+
+.site-footer-top {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  white-space: nowrap;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 2px;
+}
+
+.site-footer-top:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 /* Logo left, nav centred in whatever space is left, language switch right.
@@ -238,10 +269,6 @@ body {
   list-style: none;
   font-size: 0.8125rem;
   letter-spacing: 0.06em;
-}
-
-.lang-switch a[aria-current] {
-  font-weight: 600;
 }
 
 @media (max-width: 899px) {
