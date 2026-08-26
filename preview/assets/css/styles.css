@@ -199,6 +199,8 @@ body {
   display: flex;
   align-items: center;
   min-height: 44px;
+  flex: 1 1 auto;
+  min-width: 0;
   color: var(--ink);
   font-weight: 400;
 }
@@ -206,16 +208,23 @@ body {
 .site-footer {
   justify-content: space-between;
   gap: 1rem;
-  /* At narrow widths the two halves stack rather than squeezing the link
-     below the width of its own label. */
-  flex-wrap: wrap;
+  /* Never stacks: the link stays on the copyright's line at every width. The
+     copyright takes the squeeze and wraps internally; the link cannot, or it
+     would be pushed narrower than its own label. */
+  flex-wrap: nowrap;
   font-size: 0.875rem;
 }
 
 .site-footer-up {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   min-height: 44px;
+  /* A constant reserved width, wider than the longest label. Without it the
+     copyright gets a different amount of room per page - "Home" is 37px and
+     "Een niveau omhoog" 123px - so it wraps to a different number of lines and
+     the footer rule sits at a different height on each page. */
+  flex: 0 0 8rem;
   white-space: nowrap;
   color: inherit;
   text-decoration: none;
