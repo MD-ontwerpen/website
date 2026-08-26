@@ -106,35 +106,21 @@ body {
   opacity: 0.8;
 }
 
-/* Home: the site plan whole, inside a frame with an even margin on all four
-   sides.
+/* Home: the site plan whole, centred in the main frame with equal white above
+   and below.
 
-   The margin can only be even if the box the image sits in has the image's own
-   proportions. So the element is sized by the image rather than by the main
-   frame: width and height auto with max constraints, which makes a replaced
-   element scale to its intrinsic 16:9 and stop. content-box puts the padding
-   outside that, evenly, and the hairline marks where it ends - even white on
-   white is invisible otherwise.
+   The white is layout, not part of the picture. home.jpg was cropped to the
+   drawing itself - as supplied it carried 254px of white above and 160px
+   below, so the drawing sat 46px low inside its own file and no amount of
+   centring could even that out.
 
-   absolute, not fixed: framed by the main frame rather than the viewport. The
-   header and footer differ by 8px, so measuring from the viewport put the plan
-   low against the space it occupies. .site-main is already position: relative. */
+   absolute, not fixed: centred on the main frame rather than the viewport. The
+   header and footer differ by 8px, so measuring from the viewport put it low
+   against the space it occupies. .site-main is already position: relative. */
 .backdrop--contain {
-  --frame-pad: 1.25rem;
-  --frame-inset: 8vmin;
   position: absolute;
-  inset: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-sizing: content-box;
-  width: auto;
-  height: auto;
-  max-width: calc(100% - var(--frame-inset) - 2 * var(--frame-pad) - 2px);
-  max-height: calc(100% - var(--frame-inset) - 2 * var(--frame-pad) - 2px);
-  padding: var(--frame-pad);
-  border: 1px solid var(--band-line);
-  background: var(--paper);
+  object-fit: contain;
+  padding: 0 4vmin;
   opacity: 1;
 }
 
