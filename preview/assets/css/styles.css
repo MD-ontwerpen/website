@@ -106,14 +106,13 @@ body {
   opacity: 0.8;
 }
 
-/* Home: the site plan is shown whole and at full strength, inset from the edges
-   so it sits on white rather than running to the frame. The inset is in vmin so
-   the margin holds its proportion as the window changes.
+/* Home: the site plan shown whole and at full strength, inset from the edges so
+   it sits on white rather than running to the frame.
 
-   absolute, not fixed: this one is centred on the main frame rather than the
-   viewport. The header and footer are not the same height, so centring on the
-   viewport left the plan sitting low against the space it actually occupies.
-   .site-main is already position: relative, so inset: 0 resolves to it. */
+   absolute, not fixed: framed by the main frame rather than the viewport. The
+   header and footer are not the same height, so measuring from the viewport put
+   the plan 4px low against the space it occupies. .site-main is already
+   position: relative, so inset: 0 resolves to it. */
 .backdrop--contain {
   position: absolute;
   object-fit: contain;
