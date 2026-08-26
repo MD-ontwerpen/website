@@ -1,38 +1,38 @@
 <!doctype html>
-<html lang="nl">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Diensten — MD-ontwerpen — preview</title>
+    <title>Services — MD-ontwerpen — preview</title>
     <!-- Work in progress, published only so it can be looked at on a real URL.
          Kept out of the index deliberately: the live site at / is the one that
          should rank, and this page would otherwise compete with it. Do not add
          a Disallow for this path in robots.txt - crawlers have to be able to
          fetch the page to see this tag. -->
     <meta name="robots" content="noindex, nofollow" />
-    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
   </head>
   <body>
     <header class="site-header">
       <!-- Pinned black rather than currentColor: the mark is a fixed brand
            asset and should not follow the surrounding ink. -->
-      <a class="site-logo" href="../" aria-label="MD-ontwerpen, naar de homepage"></a>
+      <a class="site-logo" href="../" aria-label="MD-ontwerpen, to the homepage"></a>
 
-      <!-- Contextual: this is the diensten level. Inline from 900px up, hidden below it,
+      <!-- Contextual: this is the services level. Inline from 900px up, hidden below it,
            where the menu button carries the navigation instead. -->
-      <nav class="site-nav" aria-label="Paginamenu">
+      <nav class="site-nav" aria-label="Page menu">
         <ul>
-          <li><a href="#">Kozijnwijzigingen</a></li>
-          <li><a href="#">Uitbouwen</a></li>
-          <li><a href="#">Dakopbouwen</a></li>
-          <li><a href="#">Muurdoorbraken</a></li>
-          <li><a href="#">Transformaties</a></li>
+          <li><a href="#">Window alterations</a></li>
+          <li><a href="#">Extensions</a></li>
+          <li><a href="#">Roof extensions</a></li>
+          <li><a href="#">Structural openings</a></li>
+          <li><a href="#">Conversions</a></li>
         </ul>
       </nav>
 
       <ul class="lang-switch">
-          <li><a href="./" hreflang="nl" aria-current="true">NL</a></li>
-          <li><a href="../en/services/" hreflang="en">EN</a></li>
+          <li><a href="../../diensten/" hreflang="nl">NL</a></li>
+          <li><a href="./" hreflang="en" aria-current="true">EN</a></li>
       </ul>
 
       <!-- Available at every width, not just the narrow one: it opens the whole
@@ -43,24 +43,24 @@
         type="button"
         aria-expanded="false"
         aria-controls="hoofdmenu"
-        aria-label="Menu openen"
-        data-label-open="Menu openen"
-        data-label-close="Menu sluiten"
+        aria-label="Open menu"
+        data-label-open="Open menu"
+        data-label-close="Close menu"
       >
         <span class="nav-toggle-bars" aria-hidden="true"></span>
       </button>
 
-      <nav class="site-menu" id="hoofdmenu" data-open="false" aria-label="Hoofdmenu">
+      <nav class="site-menu" id="hoofdmenu" data-open="false" aria-label="Main menu">
         <ul>
           <li><a href="../">Home</a></li>
-          <li><a href="../diensten/">Diensten</a></li>
-            <li class="site-menu-sub"><a href="#">Kozijnwijzigingen</a></li>
-            <li class="site-menu-sub"><a href="#">Uitbouwen</a></li>
-            <li class="site-menu-sub"><a href="#">Dakopbouwen</a></li>
-            <li class="site-menu-sub"><a href="#">Muurdoorbraken</a></li>
-            <li class="site-menu-sub"><a href="#">Transformaties</a></li>
-          <li><a href="#">Over</a></li>
-          <li><a href="#">Referenties</a></li>
+          <li><a href="../services/">Services</a></li>
+            <li class="site-menu-sub"><a href="#">Window alterations</a></li>
+            <li class="site-menu-sub"><a href="#">Extensions</a></li>
+            <li class="site-menu-sub"><a href="#">Roof extensions</a></li>
+            <li class="site-menu-sub"><a href="#">Structural openings</a></li>
+            <li class="site-menu-sub"><a href="#">Conversions</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">References</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
       </nav>
@@ -69,13 +69,13 @@
     <main class="site-main">
       <!-- Fills the whole viewport and carries on behind the header and footer
            bands. Swap the src, keep the class. -->
-      <img class="backdrop" src="../assets/img/achtergrond.jpg" alt="" />
+      <img class="backdrop" src="../../assets/img/achtergrond.jpg" alt="" />
     </main>
 
     <footer class="site-footer">
       <span>&copy; 2026 MD-ontwerpen</span>
     </footer>
 
-    <script src="../assets/js/nav.js" defer></script>
+    <script src="../../assets/js/nav.js" defer></script>
   </body>
 </html>

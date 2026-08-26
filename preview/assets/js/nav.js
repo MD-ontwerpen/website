@@ -1,9 +1,9 @@
-/* Header menu toggle, for the collapsed layout only.
+/* The menu button, at every width.
 
-   Visibility is driven by data-open rather than the `hidden` attribute, because
-   `hidden` would also hide the inline nav above the breakpoint, where there is
-   no toggle to bring it back. Above 900px these handlers still run but the CSS
-   ignores data-open, so the nav stays inline. */
+   It controls .site-menu, which is the whole navigation - separate from the
+   contextual .site-nav in the header, which only ever shows the current
+   level. Visibility is driven by data-open rather than the `hidden` attribute
+   so the CSS decides how the panel presents itself. */
 (function () {
   "use strict";
 
@@ -15,10 +15,16 @@
     return nav.getAttribute("data-open") === "true";
   }
 
+  /* Read off the button rather than hardcoded: the site is served in Dutch and
+     English from separate URLs, and a hardcoded string put "Menu sluiten" on
+     the English pages. */
+  var labelOpen = toggle.getAttribute("data-label-open") || toggle.getAttribute("aria-label");
+  var labelClose = toggle.getAttribute("data-label-close") || labelOpen;
+
   function setOpen(open) {
     nav.setAttribute("data-open", String(open));
     toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Menu sluiten" : "Menu openen");
+    toggle.setAttribute("aria-label", open ? labelClose : labelOpen);
   }
 
   toggle.addEventListener("click", function () {
@@ -39,9 +45,9 @@
     setOpen(false);
   });
 
-  /* Leaving the collapsed layout with the panel open would otherwise strand
-     data-open="true" on the inline nav. */
-  window.matchMedia("(min-width: 900px)").addEventListener("change", function (e) {
-    if (e.matches) setOpen(false);
+  /* Crossing the breakpoint relayouts the header underneath an open panel;
+     closing it avoids leaving it anchored to a button that has moved. */
+  window.matchMedia("(min-width: 900px)").addEventListener("change", function () {
+    setOpen(false);
   });
 })();

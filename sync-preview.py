@@ -17,7 +17,8 @@ import shutil
 
 SRC = "version 2"
 DST = "preview"
-PAGES = ["index.html", "diensten/index.html"]
+PAGES = ["index.html", "diensten/index.html",
+         "en/index.html", "en/services/index.html"]
 ASSETS = [
     "assets/css/styles.css",
     "assets/js/nav.js",

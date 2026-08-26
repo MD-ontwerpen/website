@@ -90,7 +90,9 @@ body {
   text-decoration: none;
   height: 2.5rem;
   aspect-ratio: 2200 / 1368;
-  background-color: currentColor;
+  /* Fixed, not currentColor: the mark is a brand asset and should stay black
+     even if the ink around it changes. */
+  background-color: #000;
   -webkit-mask: url("../img/logo.svg") no-repeat center / contain;
   mask: url("../img/logo.svg") no-repeat center / contain;
 }
@@ -243,50 +245,61 @@ body {
 }
 
 @media (max-width: 899px) {
-  /* Collapsed: the nav becomes a panel anchored under the header band, opaque
-     so it stays readable whatever the backdrop is doing behind it. */
+  /* Below the breakpoint the contextual nav gives way entirely - the menu
+     button carries the navigation, and it lists these items anyway. */
   .site-nav {
-    position: absolute;
-    top: 100%;
-    right: 1.5rem;
-    flex: none;
     display: none;
-    min-width: 15rem;
-    color: var(--ink);
-    background: var(--paper);
-    border: 1px solid var(--band-line);
-  }
-
-  .site-nav[data-open="true"] {
-    display: block;
-  }
-
-  .site-nav ul {
-    display: block;
-  }
-
-  .site-nav li + li {
-    border-top: 1px solid var(--band-line);
-  }
-
-  .site-nav a {
-    padding: 0.5rem 1.25rem;
-  }
-
-  /* In the panel the rule would sit oddly against the row edges; the row
-     highlight does the job instead. */
-  .site-nav a::after {
-    content: none;
-  }
-
-  .site-nav a:hover,
-  .site-nav a:focus-visible {
-    background: #f0f0f0;
   }
 }
 
-@media (min-width: 900px) {
-  .nav-toggle {
-    display: none;
-  }
+/* The full navigation, opened by the button at any width. Opaque, so it stays
+   readable whatever the backdrop is doing behind it. */
+.site-menu {
+  position: absolute;
+  top: 100%;
+  right: 1.5rem;
+  display: none;
+  min-width: 15rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--band-line);
+}
+
+.site-menu[data-open="true"] {
+  display: block;
+}
+
+.site-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-menu li + li {
+  border-top: 1px solid var(--band-line);
+}
+
+.site-menu a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 1.25rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Services sit under Diensten, indented rather than in a separate block. */
+.site-menu-sub a {
+  padding-left: 2.5rem;
+  font-size: 0.9375rem;
+}
+
+.site-menu a:hover,
+.site-menu a:focus-visible {
+  background: #f0f0f0;
+}
+
+.site-menu a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
 }

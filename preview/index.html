@@ -14,11 +14,13 @@
   </head>
   <body>
     <header class="site-header">
+      <!-- Pinned black rather than currentColor: the mark is a fixed brand
+           asset and should not follow the surrounding ink. -->
       <a class="site-logo" href="./" aria-label="MD-ontwerpen, naar de homepage"></a>
 
-      <!-- The header nav is per page: this is the top level. Inline from 900px up;
-           below that it collapses behind the toggle. -->
-      <nav class="site-nav" id="hoofdmenu" data-open="false" aria-label="Hoofdmenu">
+      <!-- Contextual: this is the top level. Inline from 900px up, hidden below it,
+           where the menu button carries the navigation instead. -->
+      <nav class="site-nav" aria-label="Paginamenu">
         <ul>
           <li><a href="diensten/">Diensten</a></li>
           <li><a href="#">Over</a></li>
@@ -27,23 +29,40 @@
         </ul>
       </nav>
 
-      <!-- Not wired to any content: the language strategy is still open, so
-           these carry a placeholder href. NL is marked current rather than
-           merely styled, so it is announced as such. -->
       <ul class="lang-switch">
-        <li><a href="#" aria-current="true" hreflang="nl">NL</a></li>
-        <li><a href="#" hreflang="en">EN</a></li>
+          <li><a href="./" hreflang="nl" aria-current="true">NL</a></li>
+          <li><a href="en/" hreflang="en">EN</a></li>
       </ul>
 
+      <!-- Available at every width, not just the narrow one: it opens the whole
+           navigation, which the contextual header nav deliberately does not
+           show. -->
       <button
         class="nav-toggle"
         type="button"
         aria-expanded="false"
         aria-controls="hoofdmenu"
         aria-label="Menu openen"
+        data-label-open="Menu openen"
+        data-label-close="Menu sluiten"
       >
         <span class="nav-toggle-bars" aria-hidden="true"></span>
       </button>
+
+      <nav class="site-menu" id="hoofdmenu" data-open="false" aria-label="Hoofdmenu">
+        <ul>
+          <li><a href="./">Home</a></li>
+          <li><a href="./diensten/">Diensten</a></li>
+            <li class="site-menu-sub"><a href="#">Kozijnwijzigingen</a></li>
+            <li class="site-menu-sub"><a href="#">Uitbouwen</a></li>
+            <li class="site-menu-sub"><a href="#">Dakopbouwen</a></li>
+            <li class="site-menu-sub"><a href="#">Muurdoorbraken</a></li>
+            <li class="site-menu-sub"><a href="#">Transformaties</a></li>
+          <li><a href="#">Over</a></li>
+          <li><a href="#">Referenties</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main class="site-main">
