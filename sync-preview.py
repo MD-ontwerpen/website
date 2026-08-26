@@ -27,6 +27,8 @@ ASSETS = [
     # Apache 2.0 requires the notice to travel with the font files.
     "assets/fonts/roboto-700-latin.woff2",
     "assets/fonts/roboto-700-latin-ext.woff2",
+    "assets/fonts/roboto-400-latin.woff2",
+    "assets/fonts/roboto-400-latin-ext.woff2",
     "assets/fonts/LICENSE.txt",
 ]
 
