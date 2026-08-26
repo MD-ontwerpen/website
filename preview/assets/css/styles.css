@@ -31,6 +31,8 @@
 
 :root {
   --ink: #000;
+  /* Same slate as version 1 used for secondary text. */
+  --muted-fg: #475569;
   --paper: #fff;
   /* The rule between the three sections. Solid and heavy, matching the logo. */
   --rule: 2px solid #000;
@@ -42,6 +44,18 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+/* Makes the footer's back-to-top link glide rather than jump. On the root
+   element so it works from the link alone, without script. */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Buttons do not inherit the page font on their own. */
@@ -147,6 +161,10 @@ body {
   .site-logo {
     height: 3.25rem;
   }
+}
+
+.site-footer-copy {
+  color: var(--muted-fg);
 }
 
 .site-footer {
