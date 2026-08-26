@@ -87,11 +87,17 @@ body {
    shifts. The SVG has no background rect - it is transparent by construction. */
 .site-logo {
   display: block;
+  text-decoration: none;
   height: 2.5rem;
   aspect-ratio: 2200 / 1368;
   background-color: currentColor;
   -webkit-mask: url("../img/logo.svg") no-repeat center / contain;
   mask: url("../img/logo.svg") no-repeat center / contain;
+}
+
+.site-logo:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
 }
 
 @media (min-width: 640px) {
