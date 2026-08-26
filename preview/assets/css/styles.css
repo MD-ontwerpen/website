@@ -196,9 +196,7 @@ body {
   min-height: 44px;
   white-space: nowrap;
   color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 0.3em;
-  text-decoration-thickness: 2px;
+  text-decoration: none;
 }
 
 .site-footer-up:focus-visible {
@@ -290,10 +288,8 @@ body {
   white-space: nowrap;
 }
 
-/* Hover and keyboard focus draw the same rule the current language carries, so
-   the highlight and the current state read as one system. Drawn as a positioned
-   box rather than an underline so it clears the descenders. */
-.site-nav a::after,
+/* The language switch keeps a plain on/off rule: it is a two-state control, and
+   a wipe would read as loading rather than as switching. */
 .lang-switch a::after {
   content: "";
   position: absolute;
@@ -305,12 +301,75 @@ body {
   opacity: 0;
 }
 
-.site-nav a:hover::after,
-.site-nav a:focus-visible::after,
 .lang-switch a:hover::after,
 .lang-switch a:focus-visible::after,
 .lang-switch a[aria-current]::after {
   opacity: 1;
+}
+
+/* Everywhere else the rule wipes in from the left on hover, like a line
+   loading. Drawn as a positioned box rather than text-decoration so it clears
+   the descenders and can be animated. */
+.site-nav a,
+.site-menu a,
+.site-footer-up {
+  position: relative;
+}
+
+.site-nav a::after,
+.site-menu a::after,
+.site-footer-up::after {
+  content: "";
+  position: absolute;
+  bottom: 0.55rem;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms ease;
+}
+
+.site-nav a::after,
+.site-footer-up::after {
+  left: 0;
+  right: 0;
+}
+
+/* Inset to the panel's own padding, so the line sits under the label rather
+   than running the full width of the row. */
+.site-menu a::after {
+  left: 1.25rem;
+  right: 1.25rem;
+}
+
+.site-menu-sub a::after {
+  left: 2.5rem;
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after,
+.site-menu a:hover::after,
+.site-menu a:focus-visible::after,
+.site-footer-up:hover::after,
+.site-footer-up:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* The page you are on keeps the line permanently, and does not wipe - it is a
+   state, not a response to the pointer. Scoped to the navigation: the footer's
+   Home link is marked current too, but carries no standing rule. */
+.site-nav a[aria-current="page"]::after,
+.site-menu a[aria-current="page"]::after {
+  transform: scaleX(1);
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav a::after,
+  .site-menu a::after,
+  .site-footer-up::after {
+    transition: none;
+  }
 }
 
 .site-nav a:focus-visible,
