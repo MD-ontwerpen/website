@@ -1,0 +1,12 @@
+Roboto is licensed under the Apache License, Version 2.0.
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Copyright Google LLC.
+
+The two .woff2 files here are the `latin` and `latin-ext` subsets of Roboto
+Bold (700), taken unmodified from Google Fonts. The other seven subsets Google
+publishes are not shipped: this site is Dutch and English only.
+
+Apache 2.0 permits redistribution, including self-hosting, provided this
+notice travels with the files.

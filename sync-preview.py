@@ -24,6 +24,10 @@ ASSETS = [
     "assets/js/nav.js",
     "assets/img/achtergrond.jpg",
     "assets/img/logo.svg",
+    # Apache 2.0 requires the notice to travel with the font files.
+    "assets/fonts/roboto-700-latin.woff2",
+    "assets/fonts/roboto-700-latin-ext.woff2",
+    "assets/fonts/LICENSE.txt",
 ]
 
 NOINDEX = """

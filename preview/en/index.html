@@ -11,11 +11,16 @@
          fetch the page to see this tag. -->
     <meta name="robots" content="noindex, nofollow" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- The font is self-hosted and declared in styles.css. Preloaded because
+         it is discovered only once the stylesheet has parsed, which otherwise
+         delays it by a whole round trip. Only the latin subset is preloaded -
+         latin-ext is fetched on demand by unicode-range. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="../assets/fonts/roboto-700-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <link rel="stylesheet" href="../assets/css/styles.css" />
   </head>
