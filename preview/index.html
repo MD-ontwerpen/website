@@ -17,6 +17,28 @@
     <header class="site-header">
       <span class="site-logo" role="img" aria-label="MD-ontwerpen"></span>
 
+      <!-- Inside <header> so it shares the header's stacking context and stays
+           above the backdrop. Inline from 900px up; below that it collapses
+           behind the toggle. hrefs are placeholders until the URL structure is
+           settled. -->
+      <nav class="site-nav" id="hoofdmenu" data-open="false" aria-label="Hoofdmenu">
+        <ul>
+          <li><a href="#">Kozijnwijzigingen</a></li>
+          <li><a href="#">Uitbouwen</a></li>
+          <li><a href="#">Dakopbouwen</a></li>
+          <li><a href="#">Muurdoorbraken</a></li>
+          <li><a href="#">Transformaties</a></li>
+        </ul>
+      </nav>
+
+      <!-- Not wired to any content: the language strategy is still open, so
+           these carry the same placeholder href as the menu. NL is marked
+           current rather than merely styled, so it is announced as such. -->
+      <ul class="lang-switch">
+        <li><a href="#" aria-current="true" hreflang="nl">NL</a></li>
+        <li><a href="#" hreflang="en">EN</a></li>
+      </ul>
+
       <button
         class="nav-toggle"
         type="button"
@@ -26,19 +48,6 @@
       >
         <span class="nav-toggle-bars" aria-hidden="true"></span>
       </button>
-
-      <!-- Inside <header> so it shares the header's stacking context and stays
-           above the backdrop. hrefs are placeholders until the URL structure
-           is settled. -->
-      <nav class="site-nav" id="hoofdmenu" hidden>
-        <ul>
-          <li><a href="#">Kozijnwijzigingen</a></li>
-          <li><a href="#">Uitbouwen</a></li>
-          <li><a href="#">Dakopbouwen</a></li>
-          <li><a href="#">Muurdoorbraken</a></li>
-          <li><a href="#">Transformaties</a></li>
-        </ul>
-      </nav>
     </header>
 
     <main class="site-main">

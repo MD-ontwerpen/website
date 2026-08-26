@@ -104,9 +104,10 @@ body {
   font-size: 0.875rem;
 }
 
-/* The logo sits left, the toggle right. */
+/* Logo left, nav centred in whatever space is left, language switch right.
+   The toggle stands in for the nav below the breakpoint. */
 .site-header {
-  justify-content: space-between;
+  gap: 1.5rem;
 }
 
 /* 44px box for the touch target; the bars themselves stay 24px wide. */
@@ -160,44 +161,126 @@ body {
   top: 7px;
 }
 
-/* Anchored under the header band, right-aligned with the toggle. Opaque, so
-   the menu stays readable whatever the backdrop is doing behind it. */
-/* Inside <header>, so it would otherwise inherit the header's white ink onto
-   its own white panel. */
+/* Inline nav. Below the breakpoint the rules in the max-width block turn this
+   same markup into a panel under the header. */
 .site-nav {
-  color: var(--ink);
-  position: absolute;
-  top: 100%;
-  right: 1.5rem;
-  min-width: 15rem;
-  background: var(--paper);
-  border: 1px solid var(--band-line);
-}
-
-.site-nav[hidden] {
-  display: none;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .site-nav ul {
+  display: flex;
+  gap: 1.75rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.site-nav li + li {
-  border-top: 1px solid var(--band-line);
-}
-
-.site-nav a {
+.site-nav a,
+.lang-switch a {
+  position: relative;
   display: flex;
   align-items: center;
   min-height: 44px;
-  padding: 0.5rem 1.25rem;
   color: inherit;
   text-decoration: none;
+  white-space: nowrap;
 }
 
-.site-nav a:hover,
-.site-nav a:focus-visible {
-  background: #f0f0f0;
+/* Hover and keyboard focus draw the same rule the current language carries, so
+   the highlight and the current state read as one system. Drawn as a positioned
+   box rather than an underline so it clears the descenders. */
+.site-nav a::after,
+.lang-switch a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.55rem;
+  height: 2px;
+  background: currentColor;
+  opacity: 0;
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after,
+.lang-switch a:hover::after,
+.lang-switch a:focus-visible::after,
+.lang-switch a[aria-current]::after {
+  opacity: 1;
+}
+
+.site-nav a:focus-visible,
+.lang-switch a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* NL / EN, right of the nav. margin-left:auto rather than relying on the nav to
+   push it: below the breakpoint the nav is display:none, and without this the
+   switch and the toggle would pack against the logo instead of the edge. Above
+   it the nav's flex:1 has already taken the free space, so the auto margin
+   collapses to nothing and the layout is unchanged. */
+.lang-switch {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0 0 0 auto;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+}
+
+.lang-switch a[aria-current] {
+  font-weight: 600;
+}
+
+@media (max-width: 899px) {
+  /* Collapsed: the nav becomes a panel anchored under the header band, opaque
+     so it stays readable whatever the backdrop is doing behind it. */
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    right: 1.5rem;
+    flex: none;
+    display: none;
+    min-width: 15rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--band-line);
+  }
+
+  .site-nav[data-open="true"] {
+    display: block;
+  }
+
+  .site-nav ul {
+    display: block;
+  }
+
+  .site-nav li + li {
+    border-top: 1px solid var(--band-line);
+  }
+
+  .site-nav a {
+    padding: 0.5rem 1.25rem;
+  }
+
+  /* In the panel the rule would sit oddly against the row edges; the row
+     highlight does the job instead. */
+  .site-nav a::after {
+    content: none;
+  }
+
+  .site-nav a:hover,
+  .site-nav a:focus-visible {
+    background: #f0f0f0;
+  }
+}
+
+@media (min-width: 900px) {
+  .nav-toggle {
+    display: none;
+  }
 }

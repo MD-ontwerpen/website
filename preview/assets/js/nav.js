@@ -1,7 +1,9 @@
-/* Header menu toggle.
+/* Header menu toggle, for the collapsed layout only.
 
-   The nav starts with the `hidden` attribute in the markup, so with JavaScript
-   unavailable the menu is simply absent rather than stuck open over the page. */
+   Visibility is driven by data-open rather than the `hidden` attribute, because
+   `hidden` would also hide the inline nav above the breakpoint, where there is
+   no toggle to bring it back. Above 900px these handlers still run but the CSS
+   ignores data-open, so the nav stays inline. */
 (function () {
   "use strict";
 
@@ -9,18 +11,22 @@
   var nav = document.getElementById("hoofdmenu");
   if (!toggle || !nav) return;
 
+  function isOpen() {
+    return nav.getAttribute("data-open") === "true";
+  }
+
   function setOpen(open) {
-    nav.hidden = !open;
+    nav.setAttribute("data-open", String(open));
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "Menu sluiten" : "Menu openen");
   }
 
   toggle.addEventListener("click", function () {
-    setOpen(nav.hidden);
+    setOpen(!isOpen());
   });
 
   document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && !nav.hidden) {
+    if (event.key === "Escape" && isOpen()) {
       setOpen(false);
       toggle.focus();
     }
@@ -28,8 +34,14 @@
 
   /* A click anywhere else closes the menu. */
   document.addEventListener("click", function (event) {
-    if (nav.hidden) return;
+    if (!isOpen()) return;
     if (nav.contains(event.target) || toggle.contains(event.target)) return;
     setOpen(false);
+  });
+
+  /* Leaving the collapsed layout with the panel open would otherwise strand
+     data-open="true" on the inline nav. */
+  window.matchMedia("(min-width: 900px)").addEventListener("change", function (e) {
+    if (e.matches) setOpen(false);
   });
 })();
