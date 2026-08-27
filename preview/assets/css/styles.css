@@ -96,6 +96,14 @@ body {
   min-height: 100svh;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  /* Without this the grid gets one implicit auto column, which sizes to
+     max-content - so a row wider than the screen widens the column instead of
+     being made to fit, and the page scrolls sideways. The Dutch footer is
+     430px at max-content against a 412px phone, because "Een niveau omhoog" is
+     123px where English's "One level up" is 77px; that 18px was the overflow
+     that pushed the menu button off the edge. minmax(0, 1fr) caps the column
+     at the container and lets the copyright truncate instead. */
+  grid-template-columns: minmax(0, 1fr);
   /* Bold everywhere. The logo is unaffected: it is a mask over a painted box,
      not type, so no font-family reaches it. */
   font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
