@@ -69,6 +69,15 @@
    auto, which makes it look unset. */
 html {
   overscroll-behavior: none;
+  /* Nothing may make the page scroll sideways. The interior pages carry a
+     position: fixed backdrop sized against the initial containing block, which
+     on Android can come out wider than the visible screen - the document then
+     scrolls horizontally and the menu button ends up past the right edge while
+     the logo still looks fine on the left. clip stops that without making the
+     root a scroll container, which hidden would; hidden is declared first for
+     browsers that lack clip. */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Buttons do not inherit the page font on their own. */
@@ -106,6 +115,9 @@ body {
   position: fixed;
   inset: 0;
   width: 100%;
+  /* Belt and braces with the root's overflow-x: this element is fixed, so its
+     100% comes from the initial containing block rather than from the page. */
+  max-width: 100%;
   /* Not height: 100%. This element is fixed, so a percentage resolves against
      the initial containing block - the large viewport, with the mobile toolbar
      hidden - which is taller than the page while the toolbar is showing, and
