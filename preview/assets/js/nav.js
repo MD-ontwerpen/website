@@ -51,3 +51,27 @@
     setOpen(false);
   });
 })();
+
+/* Diagnostic, inert unless the URL carries ?debug. Prints the viewport the
+   browser is actually using, which is the one thing that cannot be measured
+   from here. */
+(function () {
+  "use strict";
+  if (location.search.indexOf("debug") === -1) return;
+  var box = document.createElement("div");
+  box.style.cssText = "position:fixed;z-index:99;left:0;top:0;" +
+    "background:#000;color:#fff;font:12px monospace;padding:6px 10px";
+  function show() {
+    box.textContent =
+      "css " + window.innerWidth + "x" + window.innerHeight +
+      "  dpr " + window.devicePixelRatio +
+      "  doc " + document.documentElement.scrollWidth +
+      "x" + document.documentElement.scrollHeight;
+  }
+  show();
+  window.addEventListener("resize", show);
+  document.addEventListener("DOMContentLoaded", function () {
+    document.body.appendChild(box);
+  });
+  if (document.body) document.body.appendChild(box);
+})();

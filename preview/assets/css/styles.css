@@ -317,10 +317,24 @@ body {
 
 /* Inline nav. Below the breakpoint the rules in the max-width block turn this
    same markup into a panel under the header. */
+/* Nothing may push the language switch or the menu button past the edge. The
+   two of them plus the logo are fixed width; the nav takes whatever is left
+   and shrinks, rather than the row growing wider than the screen. */
+.site-logo,
+.lang-switch,
+.nav-toggle {
+  flex: 0 0 auto;
+}
+
 .site-nav {
-  flex: 1;
+  flex: 1 1 0%;
+  min-width: 0;
   display: flex;
   justify-content: center;
+}
+
+.site-nav ul {
+  min-width: 0;
 }
 
 .site-nav ul {
