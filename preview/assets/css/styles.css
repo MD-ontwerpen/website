@@ -78,7 +78,13 @@ button {
 
 body {
   margin: 0;
-  min-height: 100dvh;
+  /* svh, not dvh: dvh follows the viewport as the mobile toolbar retracts, so
+     the page could end up taller than what is actually visible and the surplus
+     was scrollable. svh is the viewport with the toolbars showing - the
+     smallest it ever gets - so the page never exceeds the screen. vh first, for
+     browsers without the newer units. */
+  min-height: 100vh;
+  min-height: 100svh;
   display: grid;
   grid-template-rows: auto 1fr auto;
   /* Bold everywhere. The logo is unaffected: it is a mask over a painted box,
@@ -100,14 +106,15 @@ body {
   position: fixed;
   inset: 0;
   width: 100%;
-  /* 100dvh, not 100%. This element is fixed, so a percentage resolves against
+  /* Not height: 100%. This element is fixed, so a percentage resolves against
      the initial containing block - the large viewport, with the mobile toolbar
-     hidden. While the toolbar is showing that is taller than the body, which
-     uses 100dvh, and the surplus is scrollable: the page stopped sitting still
-     and you could swipe past the footer. dvh tracks the same viewport the body
-     does. The contain variant is absolute and resolves against .site-main
-     instead, which is why the home page never had this. */
-  height: 100dvh;
+     hidden - which is taller than the page while the toolbar is showing, and
+     the surplus was scrollable. svh matches the body, so the two agree at the
+     smallest the viewport ever gets. The contain variant is absolute and
+     resolves against .site-main instead, which is why the home page never
+     showed this. */
+  height: 100vh;
+  height: 100svh;
   background: var(--paper);
   z-index: 0;
 }
@@ -467,7 +474,7 @@ body {
      the space below the header put its last rows off-screen and out of reach -
      Referenties and Contact could not be clicked at all on a short window.
      The panel scrolls within itself instead. */
-  max-height: calc(100dvh - 8rem);
+  max-height: calc(100svh - 8rem);
   overflow-y: auto;
   overscroll-behavior: contain;
   color: var(--ink);
