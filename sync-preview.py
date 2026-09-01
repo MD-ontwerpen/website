@@ -43,11 +43,7 @@ ASSETS = [
     # landing page only
     "assets/js/stage.js",
     "assets/js/vendor/three.module.min.js",
-    "assets/js/vendor/GLTFLoader.js",
-    # GLTFLoader imports this as ../utils/, so the path must mirror upstream
-    "assets/js/utils/BufferGeometryUtils.js",
     "assets/js/vendor/LICENSE.txt",
-    "assets/models/gebouw-lagen.glb",
 ]
 
 NOINDEX = """
