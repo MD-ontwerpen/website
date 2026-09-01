@@ -19,7 +19,7 @@
           as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/fonts/roboto-400-latin.woff2"
           as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="../assets/css/styles.css?v=a53c1fda" />
+    <link rel="stylesheet" href="../assets/css/styles.css?v=d53f04fd" />
   </head>
   <body>
     <header class="site-header">
@@ -67,9 +67,18 @@
     </header>
 
     <main class="site-main">
-      <!-- Carries on behind the header and footer bands. The modifier decides
-           whether it fills the viewport or is shown whole on white. -->
-      <img class="backdrop backdrop--contain" src="../assets/img/home.jpg" alt="" />
+      <!-- The media layer: full screen, with the header and footer
+           in front of it. The four labels are real links, laid over
+           the canvas rather than drawn inside it. -->
+      <div class="stage" data-model="../assets/models/gebouw-lagen.glb">
+        <canvas class="stage-canvas" aria-hidden="true"></canvas>
+        <ul class="orbit">
+          <li><a href="services/"><span>Services</span></a></li>
+          <li><a href="about/"><span>About</span></a></li>
+          <li><a href="references/"><span>References</span></a></li>
+          <li><a href="contact/"><span>Contact</span></a></li>
+        </ul>
+      </div>
     </main>
 
     <footer class="site-footer">
@@ -78,5 +87,9 @@
     </footer>
 
     <script src="../assets/js/nav.js?v=687455f7" defer></script>
+    <script type="importmap">
+      { "imports": { "three": "../assets/js/vendor/three.module.min.js" } }
+    </script>
+    <script type="module" src="../assets/js/stage.js?v=69c74cd9"></script>
   </body>
 </html>

@@ -181,8 +181,8 @@ body {
   position: relative;
 }
 
-/* Anything placed in the main frame sits above the backdrop. */
-.site-main > :not(.backdrop) {
+/* Anything placed in the main frame sits above the media layer. */
+.site-main > :not(.backdrop):not(.stage) {
   position: relative;
   z-index: 1;
 }
@@ -553,4 +553,112 @@ body {
 .site-menu a:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: -2px;
+}
+
+
+/* ---- landing stage ---------------------------------------------------- */
+
+/* The media layer is the full screen at all times, so anything playing in it
+   runs edge to edge; the header and footer sit in front. Same footing as
+   .backdrop, which is what the interior pages put here. */
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.stage-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* The four labels are anchors laid out in a circle, not text drawn into the
+   canvas - WebGL text cannot be indexed, read by a screen reader or tabbed to.
+   The ring itself takes no pointer input; only the anchors do. */
+.orbit {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.orbit li {
+  --r: min(32vmin, 300px);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  /* rotate out to the ring, then counter-rotate so the words stay upright */
+  transform: rotate(var(--a)) translate(var(--r)) rotate(calc(-1 * var(--a)));
+  animation: orbit-settle 1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+/* Diagonals rather than the compass points: top and bottom would sit under the
+   header and footer. */
+.orbit li:nth-child(1) { --a: 315deg; }
+.orbit li:nth-child(2) { --a: 45deg; }
+.orbit li:nth-child(3) { --a: 135deg; }
+.orbit li:nth-child(4) { --a: 225deg; }
+
+/* One turn anticlockwise, ending where CSS already put them - so if the
+   animation never runs the ring is still correct. */
+@keyframes orbit-settle {
+  from {
+    transform: rotate(calc(var(--a) + 360deg)) translate(var(--r))
+      rotate(calc(-1 * (var(--a) + 360deg)));
+  }
+}
+
+.orbit a {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 0.75rem;
+  pointer-events: auto;
+  white-space: nowrap;
+  color: inherit;
+  text-decoration: none;
+}
+
+.orbit a span {
+  position: relative;
+}
+
+/* Same rule the rest of the site uses on hover. */
+.orbit a span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.3rem;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms ease;
+}
+
+.orbit a:hover span::after,
+.orbit a:focus-visible span::after {
+  transform: scaleX(1);
+}
+
+.orbit a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit li {
+    animation: none;
+  }
 }
