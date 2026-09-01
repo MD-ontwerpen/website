@@ -41,9 +41,11 @@ ASSETS = [
     "assets/fonts/roboto-400-latin-ext.woff2",
     "assets/fonts/LICENSE.txt",
     # landing page only
-    "assets/js/stage.js",
-    "assets/js/vendor/three.module.min.js",
-    "assets/js/vendor/LICENSE.txt",
+    "assets/js/showcase.js",
+    "config/houses.json",
+    "assets/showcase/house-1-still.jpg",
+    "assets/showcase/house-2-still.jpg",
+    "assets/showcase/house-3-still.jpg",
 ]
 
 NOINDEX = """

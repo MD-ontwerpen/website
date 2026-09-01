@@ -1,0 +1,23 @@
+{
+  "loop": true,
+  "houses": [
+    {
+      "id": "house-1",
+      "video": "assets/showcase/house-1-intro.mp4",
+      "still": "assets/showcase/house-1-still.jpg",
+      "label": "Villa met zwembad"
+    },
+    {
+      "id": "house-2",
+      "video": "assets/showcase/transition-1-to-2.mp4",
+      "still": "assets/showcase/house-2-still.jpg",
+      "label": "Hoekpand"
+    },
+    {
+      "id": "house-3",
+      "video": "assets/showcase/transition-2-to-3.mp4",
+      "still": "assets/showcase/house-3-still.jpg",
+      "label": "Achtergevel"
+    }
+  ]
+}

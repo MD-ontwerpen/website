@@ -182,7 +182,7 @@ body {
 }
 
 /* Anything placed in the main frame sits above the media layer. */
-.site-main > :not(.backdrop):not(.stage) {
+.site-main > :not(.backdrop):not(.stage):not(.showcase) {
   position: relative;
   z-index: 1;
 }
@@ -660,5 +660,92 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .orbit li {
     animation: none;
+  }
+}
+
+
+/* ---- showcase --------------------------------------------------------- */
+
+/* The media layer, same footing as .backdrop and .stage: full screen, with the
+   header and footer in front of it. */
+.showcase {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: var(--paper);
+}
+
+/* Video and still occupy exactly the same box, so the swap at the end of a
+   clip moves nothing. cover on both, or they would crop differently and the
+   cut would jump. */
+.showcase-video,
+.showcase-still {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.showcase-video[hidden],
+.showcase-still[hidden] {
+  display: none;
+}
+
+/* A still with no affordance reads as a paused video. The glyph is drawn in
+   CSS rather than loaded, and only appears where a pointer can hover. */
+.showcase[data-state="still"] {
+  cursor: pointer;
+}
+
+.showcase-hint {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin: -2.25rem 0 0 -2.25rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.82);
+  opacity: 0;
+  transition: opacity 240ms ease;
+  pointer-events: none;
+}
+
+.showcase-hint::after {
+  content: "";
+  position: absolute;
+  left: 54%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  border-left: 1.15rem solid var(--ink);
+  border-top: 0.72rem solid transparent;
+  border-bottom: 0.72rem solid transparent;
+}
+
+.showcase[data-state="still"]:hover .showcase-hint,
+.showcase[data-state="still"]:focus-within .showcase-hint {
+  opacity: 1;
+}
+
+/* The sequence has finished and does not loop: no affordance, nothing to click. */
+.showcase[data-state="end"] {
+  cursor: default;
+}
+
+@media (hover: none) {
+  /* No hover on touch, so the hint would never show; a permanent one would sit
+     over the picture forever. The whole frame is tappable instead. */
+  .showcase-hint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-hint {
+    transition: none;
   }
 }
